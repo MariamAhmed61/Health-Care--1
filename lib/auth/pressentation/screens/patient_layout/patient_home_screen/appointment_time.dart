@@ -187,7 +187,7 @@ class AppointmentTime extends StatelessWidget {
               }, child: Text('DONE',style: TextStyle(
                   fontWeight: FontWeight.bold
               ),),style: ElevatedButton.styleFrom(
-                  primary: AppColors.primaryColor,
+                  backgroundColor: AppColors.primaryColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   minimumSize: Size(300, 50)
 

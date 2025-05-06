@@ -13,10 +13,10 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, 'userSelection');
-    });
+    initNavigator();
   }
+
+ 
 
   void dispose() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
@@ -30,6 +30,12 @@ class _SplashScreenState extends State<SplashScreen>
       backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
       body: SplashLogo(),
     );
+  }
+
+   void initNavigator() {
+     Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, 'userSelection');
+    });
   }
 }
 

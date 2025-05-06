@@ -3,7 +3,6 @@ import 'package:health_care_app/auth/pressentation/screens/auht_screen/create_pa
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/doctor_signup.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
-import 'package:health_care_app/auth/pressentation/screens/doctor_layout/doctor_layout_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/doctor_layout/notification_screen/notification_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/doctor_layout/setting_screen/setting_screen.dart';
@@ -12,7 +11,7 @@ import 'package:health_care_app/auth/pressentation/screens/patient_layout/patien
 import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_layout_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_notification_screen/patient_notification_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_setting_screen/patient_setting_screen.dart';
-import 'package:health_care_app/splash/splash_screen.dart';
+import 'package:health_care_app/splash/views/splash_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_selection_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_signup.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/verify_number.dart';

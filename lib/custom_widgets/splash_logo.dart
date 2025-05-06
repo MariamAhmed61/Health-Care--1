@@ -22,7 +22,7 @@ class SplashLogo extends StatelessWidget {
           ),
         ),
         const Text(
-          'Health Care',
+          'Medical App',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.normal,
