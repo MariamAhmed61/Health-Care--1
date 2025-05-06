@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/custom_widgets/customButton.dart';
 import 'package:health_care_app/custom_widgets/customTextField.dart';
 import 'package:health_care_app/custom_widgets/custom_social_media.dart';
@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
           title: Text(
             'Login',
             style: TextStyle(
-                color: primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
+                color: AppColors.primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Forgot Password?',
-                    style: TextStyle(color: primaryColor),
+                    style: TextStyle(color: AppColors.primaryColor),
                   )),
             ),
             CustomButton(
@@ -53,10 +53,10 @@ class LoginScreen extends StatelessWidget {
               ),
               child: Text(
                 'OR',
-                style: TextStyle(color: primaryColor, fontSize: 20),
+                style: TextStyle(color: AppColors.primaryColor, fontSize: 20),
               ),
             ),
-            Text('Login with', style: TextStyle(color: primaryColor)),
+            Text('Login with', style: TextStyle(color: AppColors.primaryColor)),
             const SizedBox(height: 50),
             CustomSocialMedia(),
             Padding(
@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
-                            color: primaryColor,
+                            color: AppColors.primaryColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ))

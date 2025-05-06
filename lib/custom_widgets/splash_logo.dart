@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class SplashLogo extends StatelessWidget {
   const SplashLogo({
@@ -21,13 +21,13 @@ class SplashLogo extends StatelessWidget {
             alignment: Alignment.center,
           ),
         ),
-        Text(
+        const Text(
           'Health Care',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.normal,
             fontFamily: 'Pacifico',
-            color: primaryColor,
+            color:  AppColors.primaryColor,
           ),
         ),
       ],

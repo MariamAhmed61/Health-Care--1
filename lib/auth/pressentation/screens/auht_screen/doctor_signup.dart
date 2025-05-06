@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/auth/pressentation/screens/doctor_layout/home_screen/home_screen.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/custom_widgets/customButton.dart';
 import 'package:health_care_app/custom_widgets/customTextField.dart';
 import 'package:health_care_app/custom_widgets/custom_signup.dart';
@@ -15,7 +16,7 @@ class DoctorSignup extends StatelessWidget {
         title: Text(
           'Sign up',
           style: TextStyle(
-              color: primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
+              color: AppColors.primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -31,11 +32,14 @@ class DoctorSignup extends StatelessWidget {
               Text('Already have an account?',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacementNamed(DoctorHomeScreen.routeName);
+
+                  },
                   child: Text(
                     'Login',
                     style: TextStyle(
-                        color: primaryColor,
+                        color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ))

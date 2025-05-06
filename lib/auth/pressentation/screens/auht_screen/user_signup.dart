@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/custom_widgets/customButton.dart';
 import 'package:health_care_app/custom_widgets/custom_signup.dart';
 
@@ -14,7 +14,7 @@ class UserSignup extends StatelessWidget {
         title: Text(
           'Sign up',
           style: TextStyle(
-              color: primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
+              color: AppColors.primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -33,7 +33,7 @@ class UserSignup extends StatelessWidget {
                   child: Text(
                     'Login',
                     style: TextStyle(
-                        color: primaryColor,
+                        color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ))

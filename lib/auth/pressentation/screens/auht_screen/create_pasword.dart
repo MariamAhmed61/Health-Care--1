@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/custom_widgets/customButton.dart';
 import 'package:health_care_app/custom_widgets/customTextField.dart';
 
@@ -14,7 +14,7 @@ class CreatePassword extends StatelessWidget {
           title: Text(
             'Create New Password',
             style: TextStyle(
-                color: primaryColor, fontWeight: FontWeight.bold, fontSize: 25),
+                color: AppColors.primaryColor, fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),
         body: Padding(

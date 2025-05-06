@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String text;
@@ -19,19 +19,19 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         keyboardType: textInputType,
         decoration: InputDecoration(
-          labelStyle: TextStyle(color: primaryColor),
+          labelStyle: TextStyle(color:  AppColors.primaryColor),
           prefixIcon: Icon(
             icon,
-            color: primaryColor,
+            color:  AppColors.primaryColor,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(color: primaryColor, width: 2),
+            borderSide: BorderSide(color:  AppColors.primaryColor, width: 2),
           ),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: primaryColor,
+                color:  AppColors.primaryColor,
                 width: 2,
               )),
           labelText: text,

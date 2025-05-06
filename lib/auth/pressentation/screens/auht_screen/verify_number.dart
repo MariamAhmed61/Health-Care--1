@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'dart:async';
 
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/custom_widgets/customButton.dart';
 
 class VerifyNumber extends StatefulWidget {
@@ -57,7 +57,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
       appBar: AppBar(
         title: Text("Verify Your Number",
             style: TextStyle(
-                color: primaryColor,
+                color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 25)),
       ),
@@ -75,8 +75,8 @@ class _VerifyNumberState extends State<VerifyNumber> {
             ),
             SizedBox(height: 20),
             OtpTextField(
-              cursorColor: primaryColor,
-              focusedBorderColor: primaryColor,
+              cursorColor: AppColors.primaryColor,
+              focusedBorderColor: AppColors.primaryColor,
               numberOfFields: 4,
               borderColor: Colors.black,
               showFieldAsBox: true,

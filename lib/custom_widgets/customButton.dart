@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:health_care_app/constant.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
             style: TextStyle(fontSize: 18, color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: primaryColor,
+            backgroundColor: AppColors.primaryColor,
             fixedSize: Size(300, 60),
             side: const BorderSide(color: Colors.white, width: 3),
           )),
