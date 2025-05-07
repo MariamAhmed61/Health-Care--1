@@ -15,7 +15,9 @@ class LoginScreen extends StatelessWidget {
           title: Text(
             'Login',
             style: TextStyle(
-                color: AppColors.primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
+                color: AppColors.primaryColor,
+                fontSize: 25,
+                fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -68,7 +70,9 @@ class LoginScreen extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'userSignup');
+                      },
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
@@ -83,4 +87,3 @@ class LoginScreen extends StatelessWidget {
         ));
   }
 }
-

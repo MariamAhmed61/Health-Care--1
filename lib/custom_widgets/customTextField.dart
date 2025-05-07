@@ -15,23 +15,23 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: TextFormField(
         keyboardType: textInputType,
         decoration: InputDecoration(
-          labelStyle: TextStyle(color:  AppColors.primaryColor),
+          labelStyle: TextStyle(color: AppColors.primaryColor),
           prefixIcon: Icon(
             icon,
-            color:  AppColors.primaryColor,
+            color: AppColors.primaryColor,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(color:  AppColors.primaryColor, width: 2),
+            borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
           ),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color:  AppColors.primaryColor,
+                color: AppColors.primaryColor,
                 width: 2,
               )),
           labelText: text,

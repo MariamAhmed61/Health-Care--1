@@ -12,7 +12,12 @@ class CustomSignUp extends StatelessWidget {
       children: [
         CustomTextField(
           textInputType: TextInputType.name,
-          text: 'full name',
+          text: 'first name',
+          icon: Icons.person,
+        ),
+        CustomTextField(
+          textInputType: TextInputType.name,
+          text: 'last name',
           icon: Icons.person,
         ),
         CustomTextField(
@@ -33,7 +38,11 @@ class CustomSignUp extends StatelessWidget {
           text: 'mobile number',
           icon: Icons.phone,
         ),
-        CustomTextField(text: 'address', icon: Icons.location_on,textInputType: TextInputType.streetAddress,),
+        CustomTextField(
+          text: 'address',
+          icon: Icons.location_on,
+          textInputType: TextInputType.streetAddress,
+        ),
       ],
     );
   }
