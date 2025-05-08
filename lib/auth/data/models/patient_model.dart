@@ -1,30 +1,35 @@
-class PatientModel {
-  final String userType = 'Patient';
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phoneNumber;
-  final String password;
-  final String confirmPassword;
-  final String address;
+import 'package:health_care_app/auth/data/models/user_model.dart';
+
+class PatientModel  extends UserModel {
   PatientModel({
-    required this.address, 
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phoneNumber,
-    required this.password,
-    required this.confirmPassword,
-  });
-  factory PatientModel.fromJson(Map json) {
-    return PatientModel(
-      address: json['address'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      phoneNumber: json['phoneNumber'],
-      password: json['password'],
-      confirmPassword: json['confirmPassword'],
-    );
-  }
-}
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String userType,
+    required String phoneNumber,
+    required String address,
+  }) : super(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+       
+          userType: userType,
+          phoneNumber: phoneNumber,
+          address: address,
+        );
+      factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
+        firstName: json['firstName'],
+        lastName: json['lastName'],
+        email: json['email'],
+        password: json['password'],
+        confirmPassword: json['confirmPassword'],
+       
+        userType: json['userType'],
+        phoneNumber: json['phoneNumber'],
+        address: json['address'],
+      );
+} 

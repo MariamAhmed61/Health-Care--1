@@ -1,37 +1,37 @@
-class DoctorModel {
-  final String userType = 'doctor';
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String ?image;
-  final String specialization;
-  final String password;
-  final String confirmPassword;
-  final String phoneNumber;
-  final String address;
+import 'package:health_care_app/auth/data/models/user_model.dart';
+
+class DoctorModel extends UserModel {
+    final String specialization;
 
   DoctorModel({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.image,
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String userType,
     required this.specialization,
-    required this.password,
-    required this.confirmPassword,
-    required this.phoneNumber,
-    required this.address,
-  });
-  factory DoctorModel.fromJson(Map json) {
-    return DoctorModel(
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      image: json['image'],
-      specialization: json['specialization'],
-      password: json['password'],
-      confirmPassword: json['confirmPassword'],
-      phoneNumber: json['phoneNumber'],
-      address: json['address'],
-    );
-  }
+    required String phoneNumber,
+    required String address,
+  }) : super(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,       
+          userType: userType,
+          phoneNumber: phoneNumber,
+          address: address,
+        );
+      factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
+        firstName: json['firstName'],
+        lastName: json['lastName'],
+        email: json['email'],
+        password: json['password'],
+        confirmPassword: json['confirmPassword'],
+        userType: json['userType'],
+        specialization: json['specialization'],
+        phoneNumber: json['phoneNumber'],
+        address: json['address'],
+      );
 } 
