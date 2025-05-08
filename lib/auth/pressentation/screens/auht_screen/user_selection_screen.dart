@@ -1,10 +1,13 @@
-
 import 'package:flutter/material.dart';
+import 'package:health_care_app/auth/data/models/user_model.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 import 'package:health_care_app/splash/widgets/splash_logo.dart';
 
 class UserSelection extends StatelessWidget {
-  const UserSelection({super.key});
+  const UserSelection({
+    super.key,
+   
+  });
   static const routeName = 'userSelection';
 
   @override
@@ -15,16 +18,21 @@ class UserSelection extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           const SplashLogo(),
+            const SplashLogo(),
             const SizedBox(height: 150),
-           const Text('choose your role :', style: TextStyle(fontSize: 18)),
+            const Text('choose your role :', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 50),
             CustomButton(
-              onPressed: () => Navigator.pushNamed(context, 'login'),
+              onPressed: () => Navigator.pushNamed(context, 'login',
+                  arguments: 'doctor'),
               text: 'Doctor',
             ),
             CustomButton(
-              onPressed: () => Navigator.pushNamed(context, 'login'),
+              onPressed: () => Navigator.pushNamed(
+                arguments: 'patient',
+                context,
+                'login',
+              ),
               text: 'Patient',
             ),
           ],

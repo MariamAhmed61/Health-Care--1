@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signup_doctor_body.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/signup_user_body.dart';
 import 'package:health_care_app/auth/pressentation/screens/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
@@ -7,8 +8,9 @@ import 'package:health_care_app/auth/pressentation/custom_widgets/customTextFiel
 import 'package:health_care_app/auth/pressentation/custom_widgets/custom_signup.dart';
 
 class SignupScreen extends StatelessWidget {
+  final String? userType;
   static const routeName = 'Signup';
-  const SignupScreen({super.key});
+  const SignupScreen({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class SignupScreen extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: DoctorSignUpBody(),
+      body: userType == 'doctor'
+          ? const DoctorSignUpBody()
+          : const SignUpUserBody(),
     );
   }
 }

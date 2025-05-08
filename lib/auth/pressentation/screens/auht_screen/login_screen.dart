@@ -1,11 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_selection_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/custom_social_media.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({
+    super.key,
+    required this.userType,
+  });
+  final String? userType;
   static const routeName = 'login';
 
   @override
@@ -71,7 +78,8 @@ class LoginScreen extends StatelessWidget {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, 'Signup');
+                        log(userType.toString());
+                        Navigator.pushNamed(context, 'Signup' ,arguments: userType.toString());
                       },
                       child: Text(
                         'Sign Up',
@@ -79,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                             color: AppColors.primaryColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
-                      ))
+                      )),
                 ],
               ),
             )

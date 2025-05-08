@@ -23,11 +23,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case UserSelection.routeName:
       return MaterialPageRoute(
-        builder: (context) => const UserSelection(),
+        builder: (context) => const UserSelection( ),
       );
     case LoginScreen.routeName:
+    final userType = settings.arguments as String ;
       return MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
+        builder: (context) =>  LoginScreen(userType: userType  ),
       );
     case CreatePassword.routeName:
       return MaterialPageRoute(
@@ -43,8 +44,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
    
     case SignupScreen.routeName:
+        final userType = settings.arguments as String ;
       return MaterialPageRoute(
-        builder: (context) => const SignupScreen(),
+        builder: (context) =>  SignupScreen( userType: userType ),
       );
     case DoctorHomeScreen.routeName:
       return MaterialPageRoute(
