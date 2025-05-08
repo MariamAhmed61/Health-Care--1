@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/create_pasword.dart';
-import 'package:health_care_app/auth/pressentation/screens/auht_screen/doctor_signup.dart';
+import 'package:health_care_app/auth/pressentation/screens/auht_screen/signup_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/doctor_layout/home_screen/home_screen.dart';
@@ -13,7 +13,6 @@ import 'package:health_care_app/auth/pressentation/screens/patient_layout/patien
 import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_setting_screen/patient_setting_screen.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_selection_screen.dart';
-import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_signup.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/verify_number.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -42,13 +41,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => VerifyNumber(),
       );
-    case UserSignup.routeName:
+   
+    case SignupScreen.routeName:
       return MaterialPageRoute(
-        builder: (context) => const UserSignup(),
-      );
-    case DoctorSignup.routeName:
-      return MaterialPageRoute(
-        builder: (context) => const DoctorSignup(),
+        builder: (context) => const SignupScreen(),
       );
     case DoctorHomeScreen.routeName:
       return MaterialPageRoute(
@@ -58,15 +54,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const NotificationScreen(),
       );
-      case SettingScreen.routeName:
-    return MaterialPageRoute(
-      builder: (context) => const SettingScreen(),
-    );
+    case SettingScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const SettingScreen(),
+      );
     case WalletScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const WalletScreen(),
       );
-
 
     case PatientHomeScreen.routeName:
       return MaterialPageRoute(

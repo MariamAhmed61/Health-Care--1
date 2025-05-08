@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:health_care_app/custom_widgets/splash_logo.dart';
+import 'package:health_care_app/splash/widgets/splash_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

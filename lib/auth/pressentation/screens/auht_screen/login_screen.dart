@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
-import 'package:health_care_app/custom_widgets/customButton.dart';
-import 'package:health_care_app/custom_widgets/customTextField.dart';
-import 'package:health_care_app/custom_widgets/custom_social_media.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/custom_social_media.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, 'userSignup');
+                        Navigator.pushNamed(context, 'Signup');
                       },
                       child: Text(
                         'Sign Up',

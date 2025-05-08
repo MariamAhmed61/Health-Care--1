@@ -3,7 +3,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'dart:async';
 
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
-import 'package:health_care_app/custom_widgets/customButton.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 
 class VerifyNumber extends StatefulWidget {
   static const routeName = 'verifyNumber'; 

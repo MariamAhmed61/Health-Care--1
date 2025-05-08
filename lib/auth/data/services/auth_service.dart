@@ -41,7 +41,7 @@ class AuthService {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String userType, // doctor / patient
+    required String userType,  // doctor / patient
   }) async {
     try {
       final response = await _dio.post(

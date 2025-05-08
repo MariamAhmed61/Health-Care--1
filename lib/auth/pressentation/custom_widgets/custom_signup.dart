@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/custom_widgets/customTextField.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 
 class CustomSignUp extends StatelessWidget {
   const CustomSignUp({

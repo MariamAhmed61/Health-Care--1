@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:health_care_app/custom_widgets/customButton.dart';
-import 'package:health_care_app/custom_widgets/splash_logo.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
+import 'package:health_care_app/splash/widgets/splash_logo.dart';
 
 class UserSelection extends StatelessWidget {
   const UserSelection({super.key});

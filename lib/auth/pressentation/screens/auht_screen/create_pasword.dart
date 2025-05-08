@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
-import 'package:health_care_app/custom_widgets/customButton.dart';
-import 'package:health_care_app/custom_widgets/customTextField.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
+import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 
 class CreatePassword extends StatelessWidget {
   static const routeName = 'create Password';
