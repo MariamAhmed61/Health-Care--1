@@ -12,10 +12,17 @@ class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is SignupSuccess) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('sign up successfully')));
+          Navigator.pushNamed(context, 'doctorlayout');
+        } else if (state is SignupError) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
       },
       builder: (context, state) {
-        return const DoctorSignUpBody();
+        return state is SignupLoading ? const Center(child: CircularProgressIndicator()) : const DoctorSignUpBody();
       },
     );
   }

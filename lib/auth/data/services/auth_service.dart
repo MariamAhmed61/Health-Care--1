@@ -7,13 +7,13 @@ class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://healthcare-xi-pied.vercel.app/api',
-  
     ),
   );
 
   Future<UserModel?> login(String email, String password) async {
     try {
-      Response response = await _dio.post('${_dio.options.baseUrl}/auth/login',
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/login',
         data: {
           'email': email,
           'password': password,
@@ -32,6 +32,7 @@ class AuthService {
   }
 
   Future<UserModel?> signup({
+    String? specialization,
     required String firstName,
     required String lastName,
     required String email,
@@ -45,6 +46,7 @@ class AuthService {
       Response response = await _dio.post(
         '${_dio.options.baseUrl}/auth/register',
         data: {
+          'specialization': specialization,
           'firstName': firstName,
           'lastName': lastName,
           'confirmPassword': confirmPassword,
@@ -55,15 +57,18 @@ class AuthService {
           'address': address,
         },
       );
-
-      return UserModel.fromJson(response.data);
-    } on DioException catch (e) {
-      final errorMessage =
-          e.response?.data['error']['message'] ?? 'oops something went wrong';
-      throw Exception(errorMessage);
-    } catch (e) {
-      log(e.toString());
-      throw Exception('oops something went wrong');
+      if (response.data['status'] != 'success') {
+      throw Exception('Signup failed: Unexpected response');
     }
+
+    // ✅ Registration succeeded, no need to return anything
+  } on DioException catch (e) {
+    final errorMessage =
+        e.response?.data['message'] ?? 'Oops, something went wrong';
+    throw Exception(errorMessage);
+  } catch (e) {
+    log('Signup error: $e');
+    throw Exception('Oops, something went wrong');
+  }
   }
 }

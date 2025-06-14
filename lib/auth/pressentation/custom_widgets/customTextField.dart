@@ -11,7 +11,6 @@ class CustomTextField extends StatelessWidget {
     this.textInputType,
     this.icon,
     required this.text,
-    super.key,
   });
 
   @override

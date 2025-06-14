@@ -14,8 +14,8 @@ class SignUpUserBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is SignupSuccess) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('success')));
-          Navigator.pushNamed(context, 'userSelection');
+              .showSnackBar(SnackBar(content: Text('sign up successfully')));
+          Navigator.pushNamed(context, 'patientlayout');
         } else if (state is SignupError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));

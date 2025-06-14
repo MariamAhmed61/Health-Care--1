@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
@@ -10,9 +12,9 @@ class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this._authService) : super(SignupInitial());
   final AuthService _authService;
   UserModel? userModel;
-     static SignupCubit get(context) => BlocProvider.of(context);
   Future<void> signup(
-      {required String email,
+      {String? specialization,
+      required String email,
       required String password,
       required String firstName,
       required String lastName,
@@ -24,6 +26,7 @@ class SignupCubit extends Cubit<SignupState> {
     try {
       userModel = await _authService.signup(
         email: email,
+        specialization: specialization,
         password: password,
         firstName: firstName,
         lastName: lastName,
@@ -32,10 +35,8 @@ class SignupCubit extends Cubit<SignupState> {
         address: address,
         userType: userType,
       );
-      emit(SignupSuccess(
-         userModel!,
-      ));
-    } catch (e) {
+      emit(SignupSuccess());
+    } on Exception catch (e) {
       emit(SignupError(e.toString()));
     }
   }

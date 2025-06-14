@@ -5,7 +5,7 @@ import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.d
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
-class SignUpUserBody extends StatefulWidget {
+class SignUpUserBody extends StatefulWidget {//////////////can be refactored???
   const SignUpUserBody({
     super.key,
   });
@@ -15,15 +15,8 @@ class SignUpUserBody extends StatefulWidget {
 }
 
 class _SignUpUserBodyState extends State<SignUpUserBody> {
-  late String userType,
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-      phoneNumber,
-      address;
-
+  late String firstName, lastName, email, password, confirmPassword,
+      phoneNumber, address, userType;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   @override
@@ -79,10 +72,10 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
               onPressed: ()async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  context.read<SignupCubit>().signup(
+                   BlocProvider.of<SignupCubit>(context).signup(
                       email: email,
-                      firstName: firstName,
                       password: password,
+                      firstName: firstName,
                       lastName: lastName,
                       confirmPassword: confirmPassword,
                       phoneNumber: phoneNumber,

@@ -5,6 +5,7 @@ import 'package:health_care_app/patient_layout/patient_setting_screen/patient_se
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class PatientLayoutScreen extends StatefulWidget {
+  static const routeName = 'patientlayout';
   const PatientLayoutScreen({super.key});
 
   @override
