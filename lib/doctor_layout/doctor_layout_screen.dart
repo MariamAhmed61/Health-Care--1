@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_home_screen/patient_home_screen.dart';
-import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_notification_screen/patient_notification_screen.dart';
-import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_setting_screen/patient_setting_screen.dart';
+import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
+import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
+import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
-class PatientLayoutScreen extends StatefulWidget {
-  const PatientLayoutScreen({super.key});
+class DoctorLayoutScreen extends StatefulWidget {
+  static const routeName = 'doctorlayout';
+
+  const DoctorLayoutScreen({super.key});
 
   @override
-  State<PatientLayoutScreen> createState() => _PatientLayoutScreenState();
+  State<DoctorLayoutScreen> createState() => _DoctorLayoutScreenState();
 }
 
-class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
+class _DoctorLayoutScreenState extends State<DoctorLayoutScreen> {
+  @override
   int selectedIndex = 0;
   List<Widget> screens = [
-    PatientHomeScreen(),
-    PatientNotificationScreen(),
-    PatientSettingScreen(),
+    DoctorHomeScreen(),
+    NotificationScreen(),
+    SettingScreen(),
 
   ];
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       backgroundColor: AppColors.white,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -45,7 +47,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   icon: Icon(
                     Icons.home_outlined,
                     color:
-                    selectedIndex == 0 ? AppColors.cyanColor : Colors.black,
+                    selectedIndex == 0 ? AppColors.primaryColor : Colors.black,
                   ),
                 ),
                 BottomNavigationBarItem(
@@ -53,7 +55,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   icon: Icon(
                     Icons.notifications_none,
                     color:
-                    selectedIndex == 1 ? AppColors.cyanColor : Colors.black,
+                    selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
                   ),
                 ),
                 BottomNavigationBarItem(
@@ -61,7 +63,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   icon: Icon(
                     Icons.settings,
                     color:
-                    selectedIndex == 2 ? AppColors.cyanColor : Colors.black,
+                    selectedIndex == 2 ? AppColors.primaryColor : Colors.black,
                   ),
                 ),
 

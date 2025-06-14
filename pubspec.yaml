@@ -28,12 +28,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_bloc: ^9.1.1
   cupertino_icons: ^1.0.6
   dio: ^5.8.0+1
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   flutter_otp_text_field: ^1.1.1
+ 
 
 dev_dependencies:
   flutter_lints: ^3.0.0

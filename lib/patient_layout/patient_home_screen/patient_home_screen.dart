@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_home_screen/doctor_profile.dart';
-import 'package:health_care_app/auth/pressentation/screens/patient_layout/patient_home_screen/search_screen.dart';
+import 'package:health_care_app/patient_layout/patient_home_screen/doctor_profile.dart';
+import 'package:health_care_app/patient_layout/patient_home_screen/search_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class PatientHomeScreen extends StatelessWidget {

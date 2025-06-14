@@ -7,15 +7,13 @@ class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://healthcare-xi-pied.vercel.app/api',
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+  
     ),
   );
 
   Future<UserModel?> login(String email, String password) async {
     try {
-      final response = await _dio.post(
-        '/login',
+      Response response = await _dio.post('${_dio.options.baseUrl}/auth/login',
         data: {
           'email': email,
           'password': password,
@@ -41,11 +39,11 @@ class AuthService {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String userType,  // doctor / patient
+    required String userType, // doctor / patient
   }) async {
     try {
-      final response = await _dio.post(
-        '/signup',
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/register',
         data: {
           'firstName': firstName,
           'lastName': lastName,

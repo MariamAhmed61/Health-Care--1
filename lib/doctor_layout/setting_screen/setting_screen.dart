@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_app/auth/pressentation/screens/doctor_layout/setting_screen/wallet_screen.dart';
+import 'package:health_care_app/doctor_layout/setting_screen/wallet_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class SettingScreen extends StatelessWidget {
