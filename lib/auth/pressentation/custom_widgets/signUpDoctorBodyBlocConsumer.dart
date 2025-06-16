@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signup_doctor_body.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
 class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
   const SignUpDoctorBodyBlocConsumer({
@@ -23,7 +24,7 @@ class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         return state is AuthLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator( color:  AppColors.primaryColor,))
             : const DoctorSignUpBody();
       },
     );

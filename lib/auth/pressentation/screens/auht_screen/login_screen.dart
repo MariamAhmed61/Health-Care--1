@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
-import 'package:health_care_app/auth/pressentation/custom_widgets/login_bloc_consumer_body.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_selection_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
@@ -62,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             builder: (context, state) {
               return state is AuthLoading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator( color:  AppColors.primaryColor,))
                   : SingleChildScrollView(
                       child: Form(
                         key: _formKey,
