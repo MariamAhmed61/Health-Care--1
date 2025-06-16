@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
-import 'package:health_care_app/auth/pressentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signUpDoctorBodyBlocConsumer.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signUpDoctorBodyBlocConsumer.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signUpUserBodyBlocConsumer.dart';
@@ -20,7 +20,7 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupCubit(AuthService()),
+      create: (context) => AuthCubit(AuthService()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(

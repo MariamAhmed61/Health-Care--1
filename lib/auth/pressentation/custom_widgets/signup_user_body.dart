@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_app/auth/pressentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 
-class SignUpUserBody extends StatefulWidget {//////////////can be refactored???
+class SignUpUserBody extends StatefulWidget {
+  //////////////can be refactored???
   const SignUpUserBody({
     super.key,
   });
@@ -15,8 +16,14 @@ class SignUpUserBody extends StatefulWidget {//////////////can be refactored???
 }
 
 class _SignUpUserBodyState extends State<SignUpUserBody> {
-  late String firstName, lastName, email, password, confirmPassword,
-      phoneNumber, address, userType;
+  late String firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      phoneNumber,
+      address,
+      userType;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   @override
@@ -24,11 +31,10 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
-         autovalidateMode: _autovalidateMode,
+        autovalidateMode: _autovalidateMode,
         child: Column(
           children: [
             CustomTextField(
-              
               onSaved: (value) => firstName = value!,
               textInputType: TextInputType.name,
               text: 'first name',
@@ -47,11 +53,13 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
               icon: Icons.email,
             ),
             CustomTextField(
+              obsecureText: true,
               onSaved: (value) => password = value!,
               text: 'password',
               icon: Icons.lock,
             ),
             CustomTextField(
+              obsecureText: true,
               onSaved: (value) => confirmPassword = value!,
               text: 'confirm password',
               icon: Icons.lock,
@@ -69,10 +77,10 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
               textInputType: TextInputType.streetAddress,
             ),
             CustomButton(
-              onPressed: ()async {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                   BlocProvider.of<SignupCubit>(context).signup(
+                  BlocProvider.of<AuthCubit>(context).signup(
                       email: email,
                       password: password,
                       firstName: firstName,

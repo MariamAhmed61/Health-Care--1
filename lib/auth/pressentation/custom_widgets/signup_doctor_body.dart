@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_app/auth/pressentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
@@ -84,7 +84,7 @@ class _DoctorSignUpBodyState extends State<DoctorSignUpBody> {
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  BlocProvider.of<SignupCubit>(context).signup(
+                  BlocProvider.of<AuthCubit>(context).signup(
                       email: email,
                       specialization: specialization,
                       password: password,

@@ -79,7 +79,8 @@ class LoginScreen extends StatelessWidget {
                   TextButton(
                       onPressed: () {
                         log(userType.toString());
-                        Navigator.pushNamed(context, 'Signup' ,arguments: userType.toString());
+                        Navigator.pushNamed(context, 'Signup',
+                            arguments: userType.toString());
                       },
                       child: Text(
                         'Sign Up',
@@ -95,4 +96,3 @@ class LoginScreen extends StatelessWidget {
         ));
   }
 }
- 

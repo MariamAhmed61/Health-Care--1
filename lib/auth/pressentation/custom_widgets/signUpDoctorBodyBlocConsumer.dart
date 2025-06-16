@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_app/auth/pressentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/signup_doctor_body.dart';
 
 class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
@@ -10,7 +10,7 @@ class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignupCubit, SignupState>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is SignupSuccess) {
           ScaffoldMessenger.of(context)
@@ -22,7 +22,9 @@ class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return state is SignupLoading ? const Center(child: CircularProgressIndicator()) : const DoctorSignUpBody();
+        return state is SignupLoading
+            ? const Center(child: CircularProgressIndicator())
+            : const DoctorSignUpBody();
       },
     );
   }

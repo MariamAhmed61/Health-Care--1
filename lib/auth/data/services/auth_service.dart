@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:js_interop_unsafe';
 
 import 'package:dio/dio.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
@@ -23,7 +24,7 @@ class AuthService {
       return UserModel.fromJson(response.data);
     } on DioException catch (e) {
       final errorMessage =
-          e.response?.data['error']['message'] ?? 'oops something went wrong';
+          e.response?.data['message'] ?? 'oops something went wrong';
       throw Exception(errorMessage);
     } catch (e) {
       log('Login error: $e');
@@ -31,7 +32,7 @@ class AuthService {
     }
   }
 
-  Future<UserModel?> signup({
+  Future<void> signup({
     String? specialization,
     required String firstName,
     required String lastName,
@@ -57,18 +58,41 @@ class AuthService {
           'address': address,
         },
       );
-      if (response.data['status'] != 'success') {
-      throw Exception('Signup failed: Unexpected response');
-    }
 
-    // ✅ Registration succeeded, no need to return anything
-  } on DioException catch (e) {
-    final errorMessage =
-        e.response?.data['message'] ?? 'Oops, something went wrong';
-    throw Exception(errorMessage);
-  } catch (e) {
-    log('Signup error: $e');
-    throw Exception('Oops, something went wrong');
+      if (response.statusCode == 200|| response.statusCode == 201) {
+                   print('Register success');
+
+      }else {
+        print('Register failed with status code: ${response.statusCode}');
+      }
+      // ✅ Registration succeeded, no need to return anything
+    } on DioException catch (e) {
+
+      final errorMessage =
+          e.response?.data['message'] ?? 'Oops, something went wrong';
+      throw Exception(errorMessage);
+    } catch (e) {
+      log('Signup error: $e');
+      throw Exception('Oops, something went wrong');
+    }
   }
+
+ Future<void> deleteUser(String userId) async {
+    try {
+      final response = await _dio.delete(
+        'http://healthcare-xi-pied.vercel.app/api/patients/patients/:id',
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        print('User deleted successfully');
+      } else {
+        print('Failed to delete user: ${response.statusCode}');
+      }
+    } on DioException catch (e) {
+      print('Dio error: ${e.response?.data ?? e.message}');
+    } catch (e) {
+      print('Unexpected error: $e');
+    }
   }
-}
+
+  }

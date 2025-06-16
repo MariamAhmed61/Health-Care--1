@@ -5,8 +5,11 @@ class CustomTextField extends StatelessWidget {
   final String text;
   final void Function(String?)? onSaved;
   final TextInputType? textInputType;
+  final bool obsecureText;
   final IconData? icon;
   const CustomTextField({
+    super.key,
+    this.obsecureText = false,
     this.onSaved,
     this.textInputType,
     this.icon,
@@ -18,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: TextFormField(
+        obscureText: obsecureText,
         onSaved: onSaved,
         validator: (value) => value!.isEmpty ? 'This field is required' : null,
         cursorColor: AppColors.primaryColor,

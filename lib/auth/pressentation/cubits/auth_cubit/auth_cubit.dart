@@ -6,12 +6,11 @@ import 'package:health_care_app/auth/data/models/user_model.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:meta/meta.dart';
 
-part 'signup_state.dart';
+part 'auth_state.dart';
 
-class SignupCubit extends Cubit<SignupState> {
-  SignupCubit(this._authService) : super(SignupInitial());
+class AuthCubit extends Cubit<AuthStates> {
+  AuthCubit(this._authService) : super(SignupInitial());
   final AuthService _authService;
-  UserModel? userModel;
   Future<void> signup(
       {String? specialization,
       required String email,
@@ -24,9 +23,9 @@ class SignupCubit extends Cubit<SignupState> {
       required String userType}) async {
     emit(SignupLoading());
     try {
-      userModel = await _authService.signup(
-        email: email,
+      await _authService.signup(
         specialization: specialization,
+        email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
@@ -35,6 +34,16 @@ class SignupCubit extends Cubit<SignupState> {
         address: address,
         userType: userType,
       );
+      emit(SignupSuccess());
+    } on Exception catch (e) {
+      emit(SignupError(e.toString()));
+    }
+  }
+
+  Future<void> login(String email, String password) async {
+    emit(SignupLoading());
+    try {
+      await _authService.login(email, password);
       emit(SignupSuccess());
     } on Exception catch (e) {
       emit(SignupError(e.toString()));
