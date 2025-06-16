@@ -20,22 +20,18 @@ class _DoctorLayoutScreenState extends State<DoctorLayoutScreen> {
     DoctorHomeScreen(),
     NotificationScreen(),
     SettingScreen(),
-
   ];
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.white,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: BottomNavigationBar(
-
-
               backgroundColor: AppColors.white,
               fixedColor: Colors.black,
               type: BottomNavigationBarType.fixed,
-
               onTap: (value) {
                 selectedIndex = value;
                 setState(() {});
@@ -46,27 +42,29 @@ class _DoctorLayoutScreenState extends State<DoctorLayoutScreen> {
                   label: 'Home',
                   icon: Icon(
                     Icons.home_outlined,
-                    color:
-                    selectedIndex == 0 ? AppColors.primaryColor : Colors.black,
+                    color: selectedIndex == 0
+                        ? AppColors.primaryColor
+                        : Colors.black,
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: 'Notification',
                   icon: Icon(
                     Icons.notifications_none,
-                    color:
-                    selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
+                    color: selectedIndex == 1
+                        ? AppColors.primaryColor
+                        : Colors.black,
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: 'Setting',
                   icon: Icon(
                     Icons.settings,
-                    color:
-                    selectedIndex == 2 ? AppColors.primaryColor : Colors.black,
+                    color: selectedIndex == 2
+                        ? AppColors.primaryColor
+                        : Colors.black,
                   ),
                 ),
-
               ]),
         ),
       ),

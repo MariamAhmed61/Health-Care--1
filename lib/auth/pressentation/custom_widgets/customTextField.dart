@@ -4,16 +4,21 @@ import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 class CustomTextField extends StatelessWidget {
   final String text;
   final void Function(String?)? onSaved;
+  
   final TextInputType? textInputType;
+  final TextEditingController? controller;
   final bool obsecureText;
   final IconData? icon;
+  final String? Function(String?)? validator;
   const CustomTextField({
+    
     super.key,
+    this.controller,
     this.obsecureText = false,
     this.onSaved,
     this.textInputType,
     this.icon,
-    required this.text,
+    required this.text, this.validator, 
   });
 
   @override
@@ -21,9 +26,10 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: TextFormField(
+        controller: controller,
         obscureText: obsecureText,
         onSaved: onSaved,
-        validator: (value) => value!.isEmpty ? 'This field is required' : null,
+        validator:  validator,
         cursorColor: AppColors.primaryColor,
         keyboardType: textInputType,
         decoration: InputDecoration(

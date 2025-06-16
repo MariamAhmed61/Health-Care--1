@@ -3,6 +3,7 @@ import 'package:health_care_app/auth/pressentation/screens/auht_screen/create_pa
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/signup_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
+import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
@@ -23,12 +24,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case UserSelection.routeName:
       return MaterialPageRoute(
-        builder: (context) => const UserSelection( ),
+        builder: (context) => const UserSelection(),
       );
     case LoginScreen.routeName:
-    final userType = settings.arguments as String ;
+      final userType = settings.arguments as String;
       return MaterialPageRoute(
-        builder: (context) =>  LoginScreen(userType: userType  ),
+        builder: (context) => LoginScreen(userType: userType),
       );
     case CreatePassword.routeName:
       return MaterialPageRoute(
@@ -42,15 +43,19 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => VerifyNumber(),
       );
-   
+
     case SignupScreen.routeName:
-        final userType = settings.arguments as String ;
+      final userType = settings.arguments as String;
       return MaterialPageRoute(
-        builder: (context) =>  SignupScreen( userType: userType ),
+        builder: (context) => SignupScreen(userType: userType),
       );
     case DoctorHomeScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const DoctorHomeScreen(),
+      );
+    case DoctorLayoutScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const DoctorLayoutScreen(),
       );
     case NotificationScreen.routeName:
       return MaterialPageRoute(

@@ -26,6 +26,8 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
       userType;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -35,42 +37,63 @@ class _SignUpUserBodyState extends State<SignUpUserBody> {
         child: Column(
           children: [
             CustomTextField(
+              validator: (value) =>
+                  value!.isEmpty ? 'This field is required' : null,
               onSaved: (value) => firstName = value!,
               textInputType: TextInputType.name,
               text: 'first name',
               icon: Icons.person,
             ),
             CustomTextField(
+              validator: (value) =>
+                  value!.isEmpty ? 'This field is required' : null,
               onSaved: (value) => lastName = value!,
               textInputType: TextInputType.name,
               text: 'last name',
               icon: Icons.person,
             ),
             CustomTextField(
+              validator: (value) =>
+                  value!.isEmpty ? 'This field is required' : null,
               onSaved: (value) => email = value!,
               textInputType: TextInputType.emailAddress,
               text: 'email',
               icon: Icons.email,
             ),
             CustomTextField(
-              obsecureText: true,
-              onSaved: (value) => password = value!,
-              text: 'password',
+              onSaved: (p0) => password = p0!,
+              text: 'Password',
               icon: Icons.lock,
+              obsecureText: true,
+              controller: passwordController,
+              validator: (value) {
+                if (value == null || value.isEmpty) return 'Required';
+                return null;
+              },
             ),
             CustomTextField(
-              obsecureText: true,
-              onSaved: (value) => confirmPassword = value!,
-              text: 'confirm password',
+              onSaved: (p0) => confirmPassword = p0!,
+              text: 'Confirm Password',
               icon: Icons.lock,
+              obsecureText: true,
+              controller: confirmPasswordController,
+              validator: (value) {
+                if (value != passwordController.text)
+                  return 'Passwords do not match';
+                return null;
+              },
             ),
             CustomTextField(
+              validator: (value) =>
+                  value!.isEmpty ? 'This field is required' : null,
               onSaved: (value) => phoneNumber = value!,
               textInputType: TextInputType.phone,
               text: 'mobile number',
               icon: Icons.phone,
             ),
             CustomTextField(
+              validator: (value) =>
+                  value!.isEmpty ? 'This field is required' : null,
               onSaved: (value) => address = value!,
               text: 'address',
               icon: Icons.location_on,

@@ -12,17 +12,17 @@ class SignUpDoctorBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
-        if (state is SignupSuccess) {
+        if (state is AuthSuccess) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text('sign up successfully')));
-          Navigator.pushNamed(context, 'doctorlayout');
-        } else if (state is SignupError) {
+          Navigator.pop(context);
+        } else if (state is AuthError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
-        return state is SignupLoading
+        return state is AuthLoading
             ? const Center(child: CircularProgressIndicator())
             : const DoctorSignUpBody();
       },

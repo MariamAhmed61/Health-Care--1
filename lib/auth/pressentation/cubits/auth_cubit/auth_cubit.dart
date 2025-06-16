@@ -9,7 +9,7 @@ import 'package:meta/meta.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit(this._authService) : super(SignupInitial());
+  AuthCubit(this._authService) : super(AuthInitial());
   final AuthService _authService;
   Future<void> signup(
       {String? specialization,
@@ -21,7 +21,7 @@ class AuthCubit extends Cubit<AuthStates> {
       required String phoneNumber,
       required String address,
       required String userType}) async {
-    emit(SignupLoading());
+    emit(AuthLoading());
     try {
       await _authService.signup(
         specialization: specialization,
@@ -34,19 +34,19 @@ class AuthCubit extends Cubit<AuthStates> {
         address: address,
         userType: userType,
       );
-      emit(SignupSuccess());
+      emit(AuthSuccess());
     } on Exception catch (e) {
-      emit(SignupError(e.toString()));
+      emit(AuthError(e.toString()));
     }
   }
 
-  Future<void> login(String email, String password) async {
-    emit(SignupLoading());
+  Future<void> login(String email, String password , String userType) async {
+    emit(AuthLoading());
     try {
-      await _authService.login(email, password);
-      emit(SignupSuccess());
+      await _authService.login(email, password, userType );
+      emit(AuthSuccess());
     } on Exception catch (e) {
-      emit(SignupError(e.toString()));
+      emit(AuthError(e.toString()));
     }
   }
 }
