@@ -10,7 +10,7 @@ import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.d
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/custom_social_media.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
-import 'package:health_care_app/patient_layout/patient_layout_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? userType;

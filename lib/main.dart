@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/core/helper/on_generate_routs.dart';
-import 'package:health_care_app/patient_layout/patient_home_screen/patient_home_screen.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
 
 void main() {
