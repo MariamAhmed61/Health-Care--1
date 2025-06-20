@@ -9,6 +9,8 @@ import 'package:health_care_app/patient_layout/presentation/cubits/language_cubi
 import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_state.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
 
+import 'generated/l10n.dart';
+
 void main() {
   runApp(const HealthCare());
 }
@@ -32,10 +34,11 @@ class HealthCare extends StatelessWidget {
             initialRoute: SplashScreen.routeName,
             locale: Locale(state.languageCode),
             supportedLocales: const [
-              Locale('en', ''), // English
-              Locale('ar', ''), // Arabic
+              Locale('en'), // English
+              Locale('ar'), // Arabic
             ],
-            localizationsDelegates: const [
+            localizationsDelegates:  const[
+              S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
