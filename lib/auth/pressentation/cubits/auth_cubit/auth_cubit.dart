@@ -34,7 +34,8 @@ class AuthCubit extends Cubit<AuthStates> {
         address: address,
         userType: userType,
       );
-      emit(AuthSuccess());
+      UserModel? user = UserModel(firstName: firstName, lastName: lastName, email: email);
+      emit(AuthSuccess(user: user));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -43,8 +44,8 @@ class AuthCubit extends Cubit<AuthStates> {
   Future<void> login(String email, String password , String userType) async {
     emit(AuthLoading());
     try {
-      await _authService.login(email, password, userType );
-      emit(AuthSuccess());
+      final user = await _authService.login(email, password, userType);
+      emit(AuthSuccess(user: user));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
