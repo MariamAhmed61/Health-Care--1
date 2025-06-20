@@ -2,6 +2,7 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/doctor_profile_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/search_screen.dart';
@@ -123,35 +124,52 @@ class PatientHomeScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child:  Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Good Morning!',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'userName',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
+                  padding: const EdgeInsets.all(8.0),
+                  child:  BlocBuilder<AuthCubit, AuthStates>(
+                    builder: (context, state) {
+                      if (state is AuthLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (state is AuthSuccess) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Good Morning!',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              state.user!.firstName,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        );
+                      } else if (state is AuthError) {
+                        return Text(
+                          state.message,
+                          style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
                 ),
                   
-                Spacer(),
-                CircleAvatar(
+                const Spacer(),
+                const CircleAvatar(
                   radius: 30,
                   child: Icon(
                     Icons.person,
