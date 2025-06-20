@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/doctor_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
 
@@ -33,7 +35,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                 backgroundColor: AppColors.white,
                 fixedColor: Colors.black,
                 type: BottomNavigationBarType.fixed,
-
+    
                 onTap: (value) {
                   selectedIndex = value;
                   setState(() {});
@@ -70,7 +72,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                       Icons.settings,
                     ),
                   ),
-
+    
                 ]),
           ),
         ),
