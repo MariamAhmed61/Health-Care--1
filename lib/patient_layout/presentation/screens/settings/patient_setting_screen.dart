@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_cubit.dart';
 
 class PatientSettingScreen extends StatelessWidget {
   static const routeName = 'patient-setting';
@@ -161,7 +163,7 @@ class PatientSettingScreen extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          String selectedLang = 'English'; // Default value, can be dynamic later
+                          String selectedLang = 'English'; 
 
                           return StatefulBuilder(
                             builder: (context, setState) {
@@ -207,7 +209,7 @@ class PatientSettingScreen extends StatelessWidget {
                                 actions: [
                                   TextButton(
                                     onPressed: () {
-                                      // TODO: save selectedLang to storage or app state
+                                      context.read<LanguageCubit>().changeLanguage(selectedLang.substring(0, 2).toLowerCase());
                                       Navigator.of(context).pop();
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(content: Text("Language changed to $selectedLang")),
