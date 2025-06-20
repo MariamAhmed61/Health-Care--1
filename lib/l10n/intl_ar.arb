@@ -1,8 +1,26 @@
 {
-  "@@locale": "ar",
-  "appTitle": "تطبيق الرعاية الصحية",
-  "login": "تسجيل الدخول",
-  "signup": "إنشاء حساب",
-  "settings": "الإعدادات",
-  "language": "اللغة"
+    "app_title": "تطبيق الرعاية الصحية",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "name": "الاسم",
+    "phone": "رقم الهاتف",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "welcome_message": "مرحبًا بك في تطبيق الرعاية الصحية",
+    "settings": "الإعدادات",
+    "language": "اللغات",
+    "notifications": "الإشعارات",
+    "change_password": "تغيير كلمة المرور",
+    "forgrot_password": "نسيت كلمة المرور؟",
+    "help_support": "المساعدة والدعم",
+    "mywallet": "محفظتي",
+    "security": "الأمان",
+    "change": "تغيير",
+    "password_changed": "تم تغيير كلمة المرور بنجاح",
+    "new password": "كلمة مرور جديدة",
+    "general": "عام"
+
 }
