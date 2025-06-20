@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_cubit.dart';
 
 class PatientSettingScreen extends StatelessWidget {
@@ -17,10 +18,10 @@ class PatientSettingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
+               Center(
                 child: Text(
-                  'Setting',
-                  style: TextStyle(
+                  S.of(context).settings,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                       color: Colors.black),
@@ -29,15 +30,15 @@ class PatientSettingScreen extends StatelessWidget {
               const SizedBox(height: 30,),
               GestureDetector(
                 onTap: () {},
-                child: const Row(
+                child:  Row(
                   children: [
-                    Icon((Icons.wallet)),
-                    SizedBox(
+                    const Icon((Icons.wallet)),
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
-                      'My Wallet',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      S.of(context).mywallet,
+                      style: const TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],
                 ),
@@ -49,9 +50,9 @@ class PatientSettingScreen extends StatelessWidget {
                   thickness: 1,
                 ),
               ),
-              const Text(
-                'Security',
-                style: TextStyle(color: Colors.black, fontSize: 18),
+               Text(
+                S.of(context).security,
+                style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -62,11 +63,11 @@ class PatientSettingScreen extends StatelessWidget {
                       builder: (_) {
                         String newPassword = '';
                         return AlertDialog(
-                          title: Text('Change Password'),
+                          title:  Text(S.of(context).change_password),
                           content: TextField(
                             obscureText: true,
                             onChanged: (value) => newPassword = value,
-                            decoration: InputDecoration(labelText: 'New Password'),
+                            decoration: InputDecoration(labelText: S.of(context).new_password),
                           ),
                           actions: [
                             TextButton(
@@ -74,28 +75,28 @@ class PatientSettingScreen extends StatelessWidget {
                                 // await AuthService().changePassword(newPassword);
                                 Navigator.pop(context);
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Password changed successfully")),
+                                  SnackBar(content: Text(S.of(context).password_changed)),
                                 );
                               },
-                              child: Text("Change"),
+                              child: Text(S.of(context).change),
                             ),
                           ],
                         );
                       },
                     );
                   },
-                  child:  const Row(
+                  child:   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.lock_clock_rounded,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Change password',
-                        style: TextStyle(color: Colors.black),
+                        S.of(context).change_password,
+                        style: const TextStyle(color: Colors.black),
                       )
                     ],
                   ),
@@ -107,18 +108,18 @@ class PatientSettingScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, 'forgotPassword');
                   },
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.lock_clock_rounded,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Forgot password',
-                        style: TextStyle(color: Colors.black),
+                        S.of(context).forgot_password,
+                        style: const TextStyle(color: Colors.black),
                       )
                     ],
                   ),
@@ -131,26 +132,26 @@ class PatientSettingScreen extends StatelessWidget {
                   thickness: 1,
                 ),
               ),
-              const Text(
-                'General',
-                style: TextStyle(color: Colors.black, fontSize: 18),
+               Text(
+                S.of(context).general,
+                style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.notifications,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Notification',
-                        style: TextStyle(color: Colors.black),
+                        S.of(context).notifications,
+                        style: const TextStyle(color: Colors.black),
                       )
                     ],
                   ),
@@ -224,18 +225,18 @@ class PatientSettingScreen extends StatelessWidget {
                         },
                       );
                     },
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.language,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Languages',
-                        style: TextStyle(color: Colors.black),
+                        S.of(context).language,
+                        style: const TextStyle(color: Colors.black),
                       )
                     ],
                   ),
@@ -245,18 +246,18 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.question_mark,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Help and Support',
-                        style: TextStyle(color: Colors.black),
+                        S.of(context).help_support,
+                        style: const TextStyle(color: Colors.black),
                       )
                     ],
                   ),
