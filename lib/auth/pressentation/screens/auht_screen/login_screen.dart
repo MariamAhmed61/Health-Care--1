@@ -30,9 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   late String email, password;
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(AuthService()),
-      child: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             title: Text(
               'Login',
@@ -105,8 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               log(widget.userType.toString());
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                BlocProvider.of<AuthCubit>(context)
-                                    .login(email, password, widget.userType!);
+                                context.read<AuthCubit>().login(email, password, widget.userType!);
                               } else {
                                 setState(() {
                                   _autovalidateMode = AutovalidateMode.always;
@@ -162,9 +159,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ]),
                       ),
                     );
-              ;
+              
             },
-          )),
-    );
+          ));
   }
 }
