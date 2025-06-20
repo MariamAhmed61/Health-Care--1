@@ -6,8 +6,8 @@ sealed class AuthStates {}
 final class AuthInitial extends AuthStates {}
 
 final class AuthSuccess extends AuthStates {
-  final String? userType;
-  AuthSuccess({this.userType});
+  final UserModel? user;
+  AuthSuccess({this.user});
 }
 
 final class AuthError extends AuthStates {
