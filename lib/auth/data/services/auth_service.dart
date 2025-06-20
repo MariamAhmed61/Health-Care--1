@@ -9,7 +9,7 @@ class AuthService {
     ),
   );
 
-  Future<String> login(String email, String password, String userType) async {
+  Future<UserModel?> login(String email, String password, String userType) async {
     try {
       Response response = await _dio.post(
         '${_dio.options.baseUrl}/auth/login',
@@ -17,9 +17,10 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        return 'success';
+        print(response.data);
+        return UserModel.fromJson(response.data['user']);
       } else {
-        return 'failed';
+        throw Exception('Failed to login');
       }
     } on DioException catch (e) {
       final errorMessage =
