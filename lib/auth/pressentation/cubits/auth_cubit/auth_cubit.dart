@@ -53,9 +53,20 @@ class AuthCubit extends Cubit<AuthStates> {
   Future<void> sendCode(String phoneNumber, String userType) async {
     emit(AuthLoading());
     try {
-      Map<String, dynamic> response = await _authService.sendCode(phoneNumber, userType);
+      Map<String, dynamic> response =
+          await _authService.sendCode(phoneNumber, userType);
       String code = response['code'];
       emit(AuthCodeSent(code));
+    } on Exception catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> resetPassword(String newPassword, String phoneNumber , String userType , String code) async {
+    emit(AuthLoading());
+    try {
+      Map<String, dynamic> response = await _authService.resetPassword(newPassword, phoneNumber , userType , code);
+      emit(AuthSuccess());
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }

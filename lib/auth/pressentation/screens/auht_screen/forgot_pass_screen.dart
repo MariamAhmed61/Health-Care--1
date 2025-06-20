@@ -42,43 +42,49 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthStates>(
               builder: (context, state) {
-                return Form(
-                  key: formKey,
-                  autovalidateMode: _autovalidateMode,
-                  child: Column(children: [
-                    Text(
-                      'Enter your mobile number to receive a verification code..',
-                      style: TextStyle(fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 60),
-                    CustomTextField(
-                      validator: (value) =>
-                          value!.isEmpty ? 'This field is required' : null,
-                      textInputType: TextInputType.phone,
-                      onSaved: (value) {
-                        phoneNumber = value!;
-                      },
-                      text: 'Mobile Number',
-                      icon: Icons.phone,
-                    ),
-                    const SizedBox(height: 150),
-                    CustomButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          BlocProvider.of<AuthCubit>(context)
-                              .sendCode(phoneNumber, widget.userType!);
-                        } else {
-                          setState(() {
-                            _autovalidateMode = AutovalidateMode.always;
-                          });
-                        }
-                      },
-                      text: 'Submit',
-                    ),
-                  ]),
-                );
+                return state is AuthLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ))
+                    : Form(
+                        key: formKey,
+                        autovalidateMode: _autovalidateMode,
+                        child: Column(children: [
+                          Text(
+                            'Enter your mobile number to receive a verification code..',
+                            style: TextStyle(fontSize: 18),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 60),
+                          CustomTextField(
+                            validator: (value) => value!.isEmpty
+                                ? 'This field is required'
+                                : null,
+                            textInputType: TextInputType.phone,
+                            onSaved: (value) {
+                              phoneNumber = value!;
+                            },
+                            text: 'Mobile Number',
+                            icon: Icons.phone,
+                          ),
+                          const SizedBox(height: 150),
+                          CustomButton(
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                formKey.currentState!.save();
+                                BlocProvider.of<AuthCubit>(context)
+                                    .sendCode(phoneNumber, widget.userType!);
+                              } else {
+                                setState(() {
+                                  _autovalidateMode = AutovalidateMode.always;
+                                });
+                              }
+                            },
+                            text: 'Submit',
+                          ),
+                        ]),
+                      );
               },
               listener: (BuildContext context, AuthStates state) {
                 if (state is AuthError) {
@@ -87,7 +93,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 } else if (state is AuthCodeSent) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(state.code)));
-                  Navigator.pushNamed(context, 'verifyNumber');
+                  Navigator.pushNamed(context, 'verifyNumber', arguments: {
+                    'phoneNumber': phoneNumber.toString(),
+                    'userType': widget.userType.toString(),
+                    'code': state.code.toString()
+                  });
+                  log(state.code.toString());
+                  log(phoneNumber.toString());
                 }
               },
             ),

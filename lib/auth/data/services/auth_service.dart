@@ -84,7 +84,32 @@ class AuthService {
         data: {'phoneNumber': phoneNumber, 'userType': userType},
       );
       
-      return response.data;
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        return response.data;
+      }
+    } on DioException catch (e) {
+      final errorMessage =
+          e.response?.data['message'] ?? 'Oops, something went wrong';
+      throw Exception(errorMessage);
+    } catch (e) {
+      log('Signup error: $e');
+      throw Exception('Oops, something went wrong');
+    }
+  }
+ 
+ Future < Map<String, dynamic>>resetPassword(String newPassword, String phoneNumber , String userType , String code) async {
+    try {
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/reset-password',
+        data: {'newPassword': newPassword, 'phoneNumber': phoneNumber , 'userType': userType , 'code': code},
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        return response.data;
+      }
     } on DioException catch (e) {
       final errorMessage =
           e.response?.data['message'] ?? 'Oops, something went wrong';

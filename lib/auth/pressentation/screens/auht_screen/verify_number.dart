@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'dart:async';
@@ -6,12 +8,19 @@ import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 
 class VerifyNumber extends StatefulWidget {
+  final String? phoneNumber;
+  final String? code;
+  final String? userType;
   static const routeName = 'verifyNumber';
+
+  const VerifyNumber({super.key, this.code, this.userType, this.phoneNumber});
   @override
   _VerifyNumberState createState() => _VerifyNumberState();
 }
 
 class _VerifyNumberState extends State<VerifyNumber> {
+  final formKey = GlobalKey<FormState>();
+  String? sendcode;
   int _secondsRemaining = 20;
   bool _enableResend = false;
   late Timer _timer;
@@ -81,7 +90,11 @@ class _VerifyNumberState extends State<VerifyNumber> {
               borderColor: Colors.black,
               showFieldAsBox: true,
               onCodeChanged: (String code) {},
-              onSubmit: (String verificationCode) {},
+              onSubmit: (String verificationCode) {
+                setState(() {
+                  sendcode = verificationCode;
+                });
+              },
             ),
             SizedBox(height: 10),
             Text(
@@ -99,6 +112,26 @@ class _VerifyNumberState extends State<VerifyNumber> {
             ),
             SizedBox(height: 20),
             CustomButton(
+              onPressed: () {
+                if (sendcode.toString() != widget.code.toString()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Invalid code'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                } else {
+                  Navigator.pushReplacementNamed(context, 'createPassword',
+                      arguments: {
+                        'phoneNumber': widget.phoneNumber,
+                        'userType': widget.userType,
+                        'code': widget.code
+                      });
+                }
+                log(widget.phoneNumber.toString());
+                log(widget.code.toString());
+                log(widget.userType.toString());
+              },
               padding: EdgeInsets.only(top: 20, bottom: 10),
               text: 'Verify',
             ),
