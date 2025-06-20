@@ -36,8 +36,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => const CreatePassword(),
       );
     case ForgotPassword.routeName:
+      final userType = settings.arguments as String;
       return MaterialPageRoute(
-        builder: (context) => const ForgotPassword(),
+        builder: (context) =>  ForgotPassword( userType: userType,),
       );
     case VerifyNumber.routeName:
       return MaterialPageRoute(

@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
+ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 
 class AuthService {
   final Dio _dio = Dio(
@@ -74,21 +76,23 @@ class AuthService {
     }
   }
 
-  Future<void> deleteUser(String userId) async {
-    try {
-      final response = await _dio.delete(
-        'http://healthcare-xi-pied.vercel.app/api/patients/patients/:id',
-      );
 
-      if (response.statusCode == 200 || response.statusCode == 204) {
-        print('User deleted successfully');
-      } else {
-        print('Failed to delete user: ${response.statusCode}');
-      }
+  Future<Map<String, dynamic>> sendCode(String phoneNumber , String userType) async {
+    try {
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/forgot-password',
+        data: {'phoneNumber': phoneNumber, 'userType': userType},
+      );
+      
+      return response.data;
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.data ?? e.message}');
+      final errorMessage =
+          e.response?.data['message'] ?? 'Oops, something went wrong';
+      throw Exception(errorMessage);
     } catch (e) {
-      print('Unexpected error: $e');
+      log('Signup error: $e');
+      throw Exception('Oops, something went wrong');
     }
   }
 }
+

@@ -6,7 +6,7 @@ import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.dart';
 
 class VerifyNumber extends StatefulWidget {
-  static const routeName = 'verifyNumber'; 
+  static const routeName = 'verifyNumber';
   @override
   _VerifyNumberState createState() => _VerifyNumberState();
 }
@@ -77,7 +77,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
             OtpTextField(
               cursorColor: AppColors.primaryColor,
               focusedBorderColor: AppColors.primaryColor,
-              numberOfFields: 4,
+              numberOfFields: 6,
               borderColor: Colors.black,
               showFieldAsBox: true,
               onCodeChanged: (String code) {},
