@@ -14,130 +14,125 @@ class SearchScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Text(
-            'Doctors',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
+        child: Scaffold(
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.black),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: const Text(
+              'Doctors',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  final state = context.read<DoctorCubit>().state;
+                  if (state is DoctorLoaded) {
+                    showSearch(
+                      context: context,
+                      delegate: MySearchDelegate(doctors: state.doctors),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Doctors not loaded yet')),
+                    );
+                  }
+                },
+                icon: const Icon(Icons.search_rounded),
+              )
+            ],
           ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                final state = context.read<DoctorCubit>().state;
-                if (state is DoctorLoaded) {
-                  showSearch(
-                    context: context,
-                    delegate: MySearchDelegate(doctors: state.doctors),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Doctors not loaded yet')),
-                  );
-                }
-              },
-              icon: const Icon(Icons.search_rounded),
-            )
-          ],
-        ),
-        body: BlocBuilder<DoctorCubit, DoctorState>(
-          builder: (context, state) {
-            if (state is DoctorLoading) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
-                ),
-              );
-            } else if (state is DoctorError) {
-              return Center(child: Text(state.message));
-            } else if (state is DoctorLoaded) {
-              final doctorsList = state.doctors;
-              return ListView.builder(
-                itemCount: doctorsList.length,
-                itemBuilder: (context, index) {
-                  final doctor = doctorsList[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => DoctorProfile(id: doctor.id ?? ""),
-                          ),
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => DoctorProfileScreen(doctorId: doctor.id!),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffE8E8E8),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              leading: const CircleAvatar(
-                                radius: 30,
-                                child: Icon(
-                                  Icons.person,
-                                  color: AppColors.primaryColor,
-                                  size: 35,
-                                ),
-                              ),
-                              title: Text(
-                                'Dr. ${doctor.firstName} ${doctor.lastName}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              subtitle: Text(
-                                doctor.specialization ?? '',
-                                style: const TextStyle(fontSize: 10),
-                              ),
-                              trailing: const Icon(Icons.favorite_border),
+          body: BlocBuilder<DoctorCubit, DoctorState>(
+            builder: (context, state) {
+              if (state is DoctorLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
+                  ),
+                );
+              } else if (state is DoctorError) {
+                return Center(child: Text(state.message));
+              } else if (state is DoctorLoaded) {
+                final doctorsList = state.doctors;
+                return ListView.builder(
+                  itemCount: doctorsList.length,
+                  itemBuilder: (context, index) {
+                    final doctor = doctorsList[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DoctorProfileScreen(doctorId: doctor.id!),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.width * 0.2,
-                              ),
-                              child: Row(
-                                children: [
-                                  const Icon(
-                                    Icons.star_rounded,
-                                    color: Color(0xffFFC700),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xffE8E8E8),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: const CircleAvatar(
+                                  radius: 30,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: AppColors.primaryColor,
+                                    size: 35,
                                   ),
-                                  Text(doctor.averageRating ?? '0.0'),
-                                ],
+                                ),
+                                title: Text(
+                                  'Dr. ${doctor.firstName} ${doctor.lastName}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  doctor.specialization ?? '',
+                                  style: const TextStyle(fontSize: 10),
+                                ),
+                                trailing: const Icon(Icons.favorite_border),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: MediaQuery.of(context).size.width * 0.2,
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      color: Color(0xffFFC700),
+                                    ),
+                                    Text(doctor.averageRating ?? '0.0'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
-            }
-            return const SizedBox.shrink();
-          },
+                    );
+                  },
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ),
-      ),
     );
   }
 }
+
 class MySearchDelegate extends SearchDelegate<String> {
   final List<Doctor> doctors;
   MySearchDelegate({required this.doctors});
@@ -229,7 +224,7 @@ class MySearchDelegate extends SearchDelegate<String> {
           title: Text('Dr. ${doctor.firstName} ${doctor.lastName}'),
           subtitle: Text(doctor.specialization ?? ''),
           onTap: () {
-            // close(context, '');
+            close(context, '');
             Navigator.push(
               context,
               MaterialPageRoute(
