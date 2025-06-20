@@ -17,11 +17,7 @@ class PatientHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) =>
-      DoctorCubit()
-        ..fetchDoctors(),
-      child: SafeArea(
+    return SafeArea(
         child: Column(
           children: [
             _buildHeader(context),
@@ -113,8 +109,7 @@ class PatientHomeScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildHeader(BuildContext context) {
