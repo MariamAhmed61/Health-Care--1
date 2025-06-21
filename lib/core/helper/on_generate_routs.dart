@@ -32,16 +32,38 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => LoginScreen(userType: userType),
       );
     case CreatePassword.routeName:
+      Map<String, dynamic> arguments =
+          settings.arguments as Map<String, dynamic>;
+      final phoneNumber = arguments['phoneNumber'] as String;
+      final userType = arguments['userType'] as String;
+      final code = arguments['code'] as String;
       return MaterialPageRoute(
-        builder: (context) => const CreatePassword(),
+        builder: (context) => CreatePassword(
+          phoneNumber: phoneNumber,
+          userType: userType,
+          code: code,
+        ),
       );
     case ForgotPassword.routeName:
+      final userType = settings.arguments as String;
       return MaterialPageRoute(
-        builder: (context) => const ForgotPassword(),
+        builder: (context) => ForgotPassword(
+          userType: userType,
+        ),
       );
     case VerifyNumber.routeName:
+      Map<String, dynamic> arguments =
+          settings.arguments as Map<String, dynamic>;
+      final phoneNumber = arguments['phoneNumber'] as String;
+      final userType = arguments['userType'] as String;
+      final code = arguments['code'] as String;
+
       return MaterialPageRoute(
-        builder: (context) => VerifyNumber(),
+        builder: (context) => VerifyNumber(
+          phoneNumber: phoneNumber,
+          userType: userType,
+          code: code,
+        ),
       );
 
     case SignupScreen.routeName:
