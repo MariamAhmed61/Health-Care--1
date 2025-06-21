@@ -213,6 +213,196 @@ class S {
   String get general {
     return Intl.message('General', name: 'general', desc: '', args: []);
   }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
+  }
+
+  /// `Language changed successfully to`
+  String get language_changed_to {
+    return Intl.message(
+      'Language changed successfully to',
+      name: 'language_changed_to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Let's Find Your Specialist`
+  String get lets_find_doctor {
+    return Intl.message(
+      'Let\'s Find Your Specialist',
+      name: 'lets_find_doctor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
+
+  /// `Doctor Profile`
+  String get doctor_profile {
+    return Intl.message(
+      'Doctor Profile',
+      name: 'doctor_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Appointment`
+  String get book_appointment {
+    return Intl.message(
+      'Book Appointment',
+      name: 'book_appointment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointment confirmed successfully`
+  String get appointment_confirmed {
+    return Intl.message(
+      'Appointment confirmed successfully',
+      name: 'appointment_confirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No specializations `
+  String get no_specialization {
+    return Intl.message(
+      'No specializations ',
+      name: 'no_specialization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Details`
+  String get contact_details {
+    return Intl.message(
+      'Contact Details',
+      name: 'contact_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No phone number`
+  String get no_phone {
+    return Intl.message(
+      'No phone number',
+      name: 'no_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No email address`
+  String get no_email {
+    return Intl.message(
+      'No email address',
+      name: 'no_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No address`
+  String get no_address {
+    return Intl.message('No address', name: 'no_address', desc: '', args: []);
+  }
+
+  /// `Doctor Details`
+  String get doctor_details {
+    return Intl.message(
+      'Doctor Details',
+      name: 'doctor_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time`
+  String get time {
+    return Intl.message('Time', name: 'time', desc: '', args: []);
+  }
+
+  /// `Payment Method`
+  String get payment_method {
+    return Intl.message(
+      'Payment Method',
+      name: 'payment_method',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash`
+  String get cash {
+    return Intl.message('Cash', name: 'cash', desc: '', args: []);
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message('Done', name: 'done', desc: '', args: []);
+  }
+
+  /// `Booking successful`
+  String get booking_successful {
+    return Intl.message(
+      'Booking successful',
+      name: 'booking_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to logout?`
+  String get logout_confirmation {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'logout_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout successful`
+  String get logout_successful {
+    return Intl.message(
+      'Logout successful',
+      name: 'logout_successful',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

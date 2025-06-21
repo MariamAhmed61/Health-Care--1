@@ -5,7 +5,7 @@ abstract class LanguageState {
 }
 
 class LanguageInitial extends LanguageState {
-  LanguageInitial() : super('en'); // default language
+  LanguageInitial() : super('en'); 
 }
 
 class LanguageChanged extends LanguageState {

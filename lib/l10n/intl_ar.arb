@@ -21,6 +21,32 @@
     "change": "تغيير",
     "password_changed": "تم تغيير كلمة المرور بنجاح",
     "new password": "كلمة مرور جديدة",
-    "general": "عام"
+    "general": "عام",
+    "English": "الإنجليزية",
+    "Arabic": "العربية",
+    "language_changed_to": "تم تغيير اللغة بنجاح إلى ",
+    "home": "الرئيسية",
+    "let's_find_doctor": "دعنا نجد طبيبًا",
+    "search": "بحث",
+    "doctor_profile": "ملف الطبيب",
+    "book_appointment": "حجز موعد",
+    "appointment_confirmed": "تم تأكيد الموعد بنجاح",
+    "no_specialization": "لا توجد تخصصات",
+    "contact details": "تفاصيل الاتصال",
+    "no_phone": "لا يوجد رقم هاتف",
+    "no_email": "لا يوجد بريد إلكتروني",
+    "no_address": "لا يوجد عنوان",
+    "doctor_details": "تفاصيل الطبيب",
+    "time": "مواعيد العمل",
+    "payment_method": "طريقة الدفع",
+    "cash": "نقدًا",
+    "done": "تم",
+    "booking_successful": "تم الحجز بنجاح",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "logout_confirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "logout_successful": "تم تسجيل الخروج بنجاح"
+
+
 
 }
