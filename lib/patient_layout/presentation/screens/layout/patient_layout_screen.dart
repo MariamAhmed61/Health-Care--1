@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/doctor_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
@@ -51,10 +52,10 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                     color: Colors.black,
                     size: 20
                 ),
-                items: const [
+                items:  [
                   BottomNavigationBarItem(
-                    label: 'Home',
-                    icon: Icon(
+                    label: S.of(context).home,
+                    icon: const Icon(
                       Icons.home_outlined,
                     ),
                   ),
@@ -67,8 +68,8 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   //   ),
                   // ),
                   BottomNavigationBarItem(
-                    label: 'Setting',
-                    icon: Icon(
+                    label: S.of(context).settings,
+                    icon: const Icon(
                       Icons.settings,
                     ),
                   ),

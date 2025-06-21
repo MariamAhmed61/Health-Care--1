@@ -2,6 +2,7 @@ import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:health_care_app/generated/l10n.dart';
 
 import '../../../data/models/doctor_response.dart';
 import '../../cubits/appointment_cubit/appointment_cubit.dart';
@@ -28,9 +29,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 iconTheme: const IconThemeData(color: Colors.black),
-                title: const Text(
-                  'Doctor’s Details',
-                  style: TextStyle(
+                title:  Text(
+                  S.of(context).doctor_details,
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -63,7 +64,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Text(
-                                  widget.doctor.specialization ?? 'No specialization',
+                                  widget.doctor.specialization ?? S.of(context).no_specialization,
                                   style:
                                   const TextStyle(fontSize: 15, color: Colors.black),
                                 ),
@@ -78,11 +79,11 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                     initialDate: DateTime.now(),
                     activeColor: AppColors.primaryColor,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
+                   Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'TIME',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      S.of(context).time,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(
@@ -101,7 +102,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                             ),
                             child: Center(
                               child: Text(
-                                '1${index}:00 AM',
+                                '1$index:00 AM',
                                 style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -123,12 +124,12 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                         ),
                         child: Row(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.all(32.0),
+                             Padding(
+                              padding: const EdgeInsets.all(32.0),
                               child: Center(
                                 child: Text(
-                                  'Payment Method',
-                                  style: TextStyle(
+                                  S.of(context).payment_method  ,
+                                  style: const TextStyle(
                                       color: AppColors.primaryColor,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -136,9 +137,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                             ),
                             TextButton(
                               onPressed: () {},
-                              child: const Text(
-                                'CASH',
-                                style: TextStyle(
+                              child: Text(
+                                S.of(context).cash,
+                                style: const TextStyle(
                                     color: Colors.green, fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -150,7 +151,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        context.read<AppointmentCubit>().bookAppointment(widget.doctor);
+                        // context.read<AppointmentCubit>().bookAppointment(widget.doctor);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
@@ -162,9 +163,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                             side: const BorderSide(
                                 color: AppColors.cyanColor, width: 2)),
                       ),
-                      child: const Text(
-                        'DONE',
-                        style: TextStyle(
+                      child:  Text(
+                        S.of(context).done,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, color: AppColors.cyanColor),
                       ),
                     ),
@@ -210,9 +211,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
               child: Icon(Icons.check, color: Colors.black, size: 30),
             ),
             const SizedBox(height: 5),
-            Text(
-              'BOOKING SUCCESSFUL',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+             Text(
+              S.of(context).booking_successful,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500 ,),
             ),
             Text(
               message,

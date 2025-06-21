@@ -50,7 +50,24 @@ class PatientSettingScreen extends StatelessWidget {
                   thickness: 1,
                 ),
               ),
-               Text(
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, 'patient_profile');
+                },
+                child:  Row(
+                  children: [
+                    const Icon(Icons.person),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      S.of(context).profile,
+                      style: const TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+              Text(
                 S.of(context).security,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
@@ -164,7 +181,7 @@ class PatientSettingScreen extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          String selectedLang = 'English'; 
+                          String selectedLang = context.read<LanguageCubit>().state.languageCode == 'ar' ? 'Arabic' : 'English'; 
 
                           return StatefulBuilder(
                             builder: (context, setState) {
@@ -174,7 +191,7 @@ class PatientSettingScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     ListTile(
-                                      title: const Text('English'),
+                                      title:  Text(S.of(context).english),
                                       trailing: Checkbox(
                                         value: selectedLang == 'English',
                                         onChanged: (_) {
@@ -190,7 +207,7 @@ class PatientSettingScreen extends StatelessWidget {
                                       },
                                     ),
                                     ListTile(
-                                      title: const Text('Arabic'),
+                                      title:  Text(S.of(context).arabic),
                                       trailing: Checkbox(
                                         value: selectedLang == 'Arabic',
                                         onChanged: (_) {
@@ -213,7 +230,7 @@ class PatientSettingScreen extends StatelessWidget {
                                       context.read<LanguageCubit>().changeLanguage(selectedLang.substring(0, 2).toLowerCase());
                                       Navigator.of(context).pop();
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text("Language changed to $selectedLang")),
+                                        SnackBar(content: Text('${S.of(context).language_changed_to}  $selectedLang')),
                                       );
                                     },
                                     child: const Text("Save"),

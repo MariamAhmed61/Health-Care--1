@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/doctor_profile_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/search_screen.dart';
 
@@ -138,15 +139,15 @@ class PatientHomeScreen extends StatelessWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Good Morning!',
-                              style: TextStyle(
+                             Text(
+                              S.of(context).welcome_message,
+                              style:const TextStyle(
                                   color: Colors.black,
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              state.user!.firstName,
+                              '${state.user!.firstName} ${state.user!.lastName}',
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -191,9 +192,9 @@ class PatientHomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    const Text(
-                      'Let\'s Find Your Specialist',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).lets_find_doctor,
+                      style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
@@ -215,17 +216,17 @@ class PatientHomeScreen extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 12.0),
                             child: Row(
                               children: [
                                 Text(
-                                  'Search...',
-                                  style: TextStyle(color: Colors.black),
+                                  S.of(context).search,
+                                  style: const TextStyle(color: Colors.black),
                                 ),
-                                Spacer(),
-                                Icon(
+                                const Spacer(),
+                                const Icon(
                                   Icons.search,
                                   color: Colors.black,
                                 )
