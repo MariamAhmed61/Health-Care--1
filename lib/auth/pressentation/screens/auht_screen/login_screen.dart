@@ -59,7 +59,10 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             builder: (context, state) {
               return state is AuthLoading
-                  ? const Center(child: CircularProgressIndicator( color:  AppColors.primaryColor,))
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: AppColors.primaryColor,
+                    ))
                   : SingleChildScrollView(
                       child: Form(
                         key: _formKey,
@@ -89,8 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 left: 240, top: 10, bottom: 10),
                             child: TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, 'forgotPassword');
+                                  Navigator.pushNamed(context, 'forgotPassword',
+                                      arguments: widget.userType.toString());
+                                  log(widget.userType.toString());
                                 },
                                 child: Text(
                                   'Forgot Password?',
