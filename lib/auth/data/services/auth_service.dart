@@ -5,7 +5,7 @@ import 'package:health_care_app/auth/data/models/user_model.dart';
 class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://healthcare-xi-pied.vercel.app/api',
+      baseUrl: 'https://healthcare-4scv.vercel.app/api',
     ),
   );
 
