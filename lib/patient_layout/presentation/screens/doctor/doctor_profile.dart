@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_details_cubit/doctor_details_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_details_cubit/doctor_details_state.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/appointment/appointment_time.dart';
@@ -65,9 +66,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Column(
                     children: [
-                      const Text(
-                        'Doctor’s Profile',
-                        style: TextStyle(
+                       Text(
+                        S.of(context).doctor_profile,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -103,7 +104,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                doctor.specialization ?? 'No Specialization',
+                                doctor.specialization ?? S.of(context).no_specialization,
                                 style: const TextStyle(
                                   fontSize: 15,
                                   color: Colors.black,
@@ -151,9 +152,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Contact Details',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).contact_details,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                         const SizedBox(height: 16),
@@ -162,7 +163,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             const Icon(Icons.phone),
                             const SizedBox(width: 10),
                             Text(
-                              doctor.phoneNumber ?? 'No phone',
+                              doctor.phoneNumber ?? S.of(context).no_phone,
                               style: const TextStyle(fontSize: 18),
                             ),
                           ],
@@ -173,7 +174,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             const Icon(Icons.mail),
                             const SizedBox(width: 10),
                             Text(
-                              doctor.email ?? 'No email found',
+                              doctor.email ?? S.of(context).no_email,
                               style: const TextStyle(fontSize: 18),
                             ),
                           ],
@@ -184,7 +185,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             const Icon(Icons.location_pin),
                             const SizedBox(width: 10),
                             Text(
-                              doctor.address ?? 'No address',
+                              doctor.address ?? S.of(context).no_address,
                               style: const TextStyle(fontSize: 18),
                             ),
                           ],
@@ -209,9 +210,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                     color: AppColors.cyanColor, width: 2),
                               ),
                             ),
-                            child: const Text(
-                              'BOOK APPOINTMENT',
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).book_appointment,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.cyanColor,
                               ),
