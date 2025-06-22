@@ -14,19 +14,19 @@
     "language": "اللغات",
     "notifications": "الإشعارات",
     "change_password": "تغيير كلمة المرور",
-    "forgrot_password": "نسيت كلمة المرور؟",
+    "forgot_password": "نسيت كلمة المرور؟",
     "help_support": "المساعدة والدعم",
-    "mywallet": "محفظتي",
+    "my_wallet": "محفظتي",
     "security": "الأمان",
     "change": "تغيير",
     "password_changed": "تم تغيير كلمة المرور بنجاح",
     "new password": "كلمة مرور جديدة",
     "general": "عام",
-    "English": "الإنجليزية",
-    "Arabic": "العربية",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
     "language_changed_to": "تم تغيير اللغة بنجاح إلى ",
     "home": "الرئيسية",
-    "let's_find_doctor": "دعنا نجد طبيبًا",
+    "lets_find_doctor": "دعنا نجد طبيبًا",
     "search": "بحث",
     "doctor_profile": "ملف الطبيب",
     "book_appointment": "حجز موعد",
@@ -45,7 +45,9 @@
     "profile": "الملف الشخصي",
     "logout": "تسجيل الخروج",
     "logout_confirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-    "logout_successful": "تم تسجيل الخروج بنجاح"
+    "logout_successful": "تم تسجيل الخروج بنجاح",
+    "save": "حفظ",
+    "select_language": "اختر اللغة"
 
 
 
