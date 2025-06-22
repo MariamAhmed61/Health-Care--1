@@ -83,32 +83,31 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) {
-                        String newPassword = '';
-                        return AlertDialog(
-                          title:  Text(S.of(context).change_password),
-                          content: TextField(
-                            obscureText: true,
-                            onChanged: (value) => newPassword = value,
-                            decoration: InputDecoration(labelText: S.of(context).new_password),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () async {
-                                // await AuthService().resetPassword(newPassword, phoneNumber, userType, code)
-                                Navigator.pop(context);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(S.of(context).password_changed)),
-                                );
-                              },
-                              child: Text(S.of(context).change),
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    // showDialog(
+                    //   context: context,
+                    //   builder: (_) {
+                    //     String newPassword = '';
+                    //     return AlertDialog(
+                    //       title:  Text(S.of(context).change_password),
+                    //       content: TextField(
+                    //         obscureText: true,
+                    //         onChanged: (value) => newPassword = value,
+                    //         decoration: InputDecoration(labelText: S.of(context).new_password),
+                    //       ),
+                    //       actions: [
+                    //         TextButton(
+                    //           onPressed: () async {
+                    //             Navigator.pop(context);
+                    //             ScaffoldMessenger.of(context).showSnackBar(
+                    //               SnackBar(content: Text(S.of(context).password_changed)),
+                    //             );
+                    //           },
+                    //           child: Text(S.of(context).change),
+                    //         ),
+                    //       ],
+                    //     );
+                    //   },
+                    // );
                   },
                   child:   Row(
                     children: [
@@ -131,7 +130,8 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'forgotPassword');
+                     Navigator.pushNamed(context, 'forgotPassword',
+                                      arguments:'patient');
                   },
                   child:  Row(
                     children: [
