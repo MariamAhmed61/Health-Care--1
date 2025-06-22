@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_cubit.dart';
 
@@ -37,7 +38,7 @@ class PatientSettingScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      S.of(context).mywallet,
+                      S.of(context).my_wallet,
                       style: const TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],
@@ -67,6 +68,13 @@ class PatientSettingScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                ),
+              ),
               Text(
                 S.of(context).security,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
@@ -89,7 +97,7 @@ class PatientSettingScreen extends StatelessWidget {
                           actions: [
                             TextButton(
                               onPressed: () async {
-                                // await AuthService().changePassword(newPassword);
+                                // await AuthService().resetPassword(newPassword, phoneNumber, userType, code)
                                 Navigator.pop(context);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(S.of(context).password_changed)),
@@ -186,7 +194,7 @@ class PatientSettingScreen extends StatelessWidget {
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
-                                title: const Text('Select Language'),
+                                title:  Text(S.of(context).select_language),
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -227,13 +235,18 @@ class PatientSettingScreen extends StatelessWidget {
                                 actions: [
                                   TextButton(
                                     onPressed: () {
-                                      context.read<LanguageCubit>().changeLanguage(selectedLang.substring(0, 2).toLowerCase());
+                                     String langCode = context.read<LanguageCubit>().state.languageCode;
+                                      if(selectedLang == 'English' && langCode != 'en') {
+                                        context.read<LanguageCubit>().changeLanguage('en');
+                                      } else if(selectedLang == 'Arabic' && langCode != 'ar') {
+                                        context.read<LanguageCubit>().changeLanguage('ar');
+                                      }
                                       Navigator.of(context).pop();
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(content: Text('${S.of(context).language_changed_to}  $selectedLang')),
                                       );
                                     },
-                                    child: const Text("Save"),
+                                    child:  Text(S.of(context).save),
                                   ),
                                 ],
                               );

@@ -147,7 +147,7 @@ class PatientHomeScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${state.user!.firstName} ${state.user!.lastName}',
+                              '${state.user.firstName} ${state.user.lastName}',
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -199,6 +199,7 @@ class PatientHomeScreen extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
+
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(

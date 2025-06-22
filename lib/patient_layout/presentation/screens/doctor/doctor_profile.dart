@@ -153,7 +153,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S.of(context).contact_details,
+                          S.of(context).doctor_details,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
