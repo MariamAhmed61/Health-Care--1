@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
@@ -25,10 +27,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   late String email, password;
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(AuthService()),
@@ -109,8 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               log(widget.userType.toString());
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                BlocProvider.of<AuthCubit>(context)
-                                    .login(email, password, widget.userType!);
+                                BlocProvider.of<AuthCubit>(context).login(email,
+                                    password, widget.userType.toString());
                               } else {
                                 setState(() {
                                   _autovalidateMode = AutovalidateMode.always;
@@ -122,21 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               top: 50,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              bottom: 20,
-                            ),
-                            child: Text(
-                              'OR',
-                              style: TextStyle(
-                                  color: AppColors.primaryColor, fontSize: 20),
-                            ),
-                          ),
-                          Text('Login with',
-                              style: TextStyle(color: AppColors.primaryColor)),
-                          const SizedBox(height: 50),
-                          CustomSocialMedia(),
+                          const SizedBox(height: 230),
                           Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: Row(
