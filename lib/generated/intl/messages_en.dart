@@ -88,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "welcome_message": MessageLookupByLibrary.simpleMessage(
-            "Welcome to the Health Care App")
+            "Welcome to the Health Care App"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

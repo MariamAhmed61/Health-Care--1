@@ -87,7 +87,7 @@ class PatientProfile extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                    _showDialogLogout(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -110,6 +110,32 @@ class PatientProfile extends StatelessWidget {
             },
         ),
       ),
+    );
+  }
+  _showDialogLogout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(S.of(context).logout),
+          content: Text(S.of(context).logout_confirmation),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(S.of(context).cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen(userType: 'patient')),
+                );
+              },
+              child: Text(S.of(context).yes),
+            ),
+          ],
+        );
+      },
     );
   }
 }

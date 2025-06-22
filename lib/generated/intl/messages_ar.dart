@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "time": MessageLookupByLibrary.simpleMessage("مواعيد العمل"),
         "welcome_message": MessageLookupByLibrary.simpleMessage(
-            "مرحبًا بك في تطبيق الرعاية الصحية")
+            "مرحبًا بك في تطبيق الرعاية الصحية"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }

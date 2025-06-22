@@ -47,7 +47,8 @@
     "logout_confirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "logout_successful": "تم تسجيل الخروج بنجاح",
     "save": "حفظ",
-    "select_language": "اختر اللغة"
+    "select_language": "اختر اللغة",
+    "yes": "نعم"
 
 
 

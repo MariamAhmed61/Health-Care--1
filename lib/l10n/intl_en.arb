@@ -47,6 +47,7 @@
     "logout_confirmation": "Are you sure you want to logout?",
     "logout_successful": "Logout successful",
     "save": "Save",
-    "select_language": "Select Language"
+    "select_language": "Select Language",
+    "yes": "Yes"
 
 }
