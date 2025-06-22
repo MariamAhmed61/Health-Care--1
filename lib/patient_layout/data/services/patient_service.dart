@@ -5,7 +5,7 @@ import '../models/doctor_response.dart';
 class PatientService {
   static final Dio _dio = Dio()
     ..options = BaseOptions(
-      baseUrl: 'https://healthcare-xi-pied.vercel.app/api/',
+      baseUrl: 'http://healthcare-4scv.vercel.app/api/',
     );
 
   static Future<List<Doctor>?> getDoctors() async {
