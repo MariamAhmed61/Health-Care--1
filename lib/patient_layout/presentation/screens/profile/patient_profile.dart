@@ -1,72 +1,113 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
+import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/generated/l10n.dart';
 
 class PatientProfile extends StatelessWidget {
   static const String routeName = 'patient_profile';
+
   const PatientProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-          children: [
-            Text(S.of(context).profile,
-                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20),
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.transparent,
-             child: Icon(
-                Icons.person,
-                size: 100,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Patient Name',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Email: patient@example.com',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Phone: +1234567890',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Address: 123 Main St, Anytown, USA',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality to edit profile
-              },
-              child: Text('Edit Profile'),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                textStyle: TextStyle(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality to log out
-              },
-              child: Text('Log Out'),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                textStyle: TextStyle(fontSize: 16),
-              ),
-            ),
-      
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(S
+            .of(context)
+            .profile,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        backgroundColor: AppColors.cyanColor,),
+      body: Center(
+        child: BlocBuilder<AuthCubit, AuthStates>(
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return const CircularProgressIndicator();
+            } else if (state is AuthError) {
+              return Text(state.message,
+                  style: const TextStyle(color: Colors.red, fontSize: 16));
+            } else if (state is AuthSuccess) {
+              final patient = state.user;
+              if (patient == null) {
+                return const Text('No patient data available',
+                    style: TextStyle(fontSize: 16, color: Colors.red));
+              }
+            return Column(
+              children: [
+                const SizedBox(height: 20),
+                const CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.transparent,
+                  child: Icon(
+                    Icons.person,
+                    size: 100,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text('${S.of(context).name}:',
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(
+                          '${patient.firstName} ${patient.lastName}',
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 10),
+                Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text('${S.of(context).email}:',
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(
+                          patient.email,
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    side: const BorderSide(
+                      color: AppColors.cyanColor,
+                      width: 2,   
+                    ),),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      ),
+                  child: Text(S.of(context).logout , style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.cyanColor),
+                  ),
+                ),
+
+              ],
+            );
+          }
+            return const SizedBox.shrink();
+            },
         ),
       ),
     );
