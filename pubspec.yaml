@@ -39,6 +39,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  google_maps_flutter: ^2.12.1
+  geocoding: ^3.0.0
+  url_launcher: ^6.2.5
+  geolocator: ^10.1.0
 
 
 dev_dependencies:
