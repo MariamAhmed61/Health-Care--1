@@ -12,7 +12,7 @@ import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.d
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/custom_social_media.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
-import 'package:health_care_app/patient_layout/patient_layout_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? userType;
@@ -32,9 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email, password;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(AuthService()),
-      child: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             title: Text(
               'Login',
@@ -111,8 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               log(widget.userType.toString());
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                BlocProvider.of<AuthCubit>(context).login(email,
-                                    password, widget.userType.toString());
+                                                                context.read<AuthCubit>().login(email, password, widget.userType!);
+
                               } else {
                                 setState(() {
                                   _autovalidateMode = AutovalidateMode.always;
@@ -154,9 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ]),
                       ),
                     );
-              ;
+              
             },
-          )),
-    );
+          ));
   }
 }

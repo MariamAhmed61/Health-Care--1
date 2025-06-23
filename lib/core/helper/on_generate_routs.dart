@@ -8,10 +8,11 @@ import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/wallet_screen.dart';
-import 'package:health_care_app/patient_layout/patient_home_screen/patient_home_screen.dart';
-import 'package:health_care_app/patient_layout/patient_layout_screen.dart';
-import 'package:health_care_app/patient_layout/patient_notification_screen/patient_notification_screen.dart';
-import 'package:health_care_app/patient_layout/patient_setting_screen/patient_setting_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/notification/patient_notification_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/profile/patient_profile.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/user_selection_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/verify_number.dart';
@@ -104,6 +105,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const PatientSettingScreen(),
       );
+    case PatientProfile.routeName:
+      return MaterialPageRoute(builder: (context)=>const PatientProfile());
 
     default:
       return MaterialPageRoute(

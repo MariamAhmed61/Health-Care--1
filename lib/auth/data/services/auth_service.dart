@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 
@@ -11,7 +10,7 @@ class AuthService {
     ),
   );
 
-  Future<String> login(String email, String password, String userType) async {
+  Future<UserModel?> login(String email, String password, String userType) async {
     try {
   Response response = await _dio.post(
     '${_dio.options.baseUrl}/auth/login',
@@ -21,19 +20,20 @@ class AuthService {
   print('Response status code: ${response.statusCode}');
   print('Response data: ${response.data}');
 
-  if (response.statusCode == 200) {
-    return 'success';
-  } else {
-    return 'failed';
-  }
-} on DioException catch (e) {
-  print('DioException: ${e.response?.statusCode}');
-  print('DioException data: ${e.response?.data}');
-  final errorMessage =
-      e.response?.data['message'] ?? 'oops something went wrong';
-  throw Exception(errorMessage);
-}
-
+      if (response.statusCode == 200) {
+        print(response.data);
+        return UserModel.fromJson(response.data['user']);
+      } else {
+        throw Exception('Failed to login');
+      }
+    } on DioException catch (e) {
+      final errorMessage =
+          e.response?.data['message'] ?? 'oops something went wrong';
+      throw Exception(errorMessage);
+    } catch (e) {
+      log('Login error: $e');
+      throw Exception('oops something went wrong');
+    }
   }
 
   Future<void> signup({

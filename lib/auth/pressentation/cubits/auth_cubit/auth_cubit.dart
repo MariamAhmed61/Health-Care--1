@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:meta/meta.dart';
@@ -35,17 +34,18 @@ class AuthCubit extends Cubit<AuthStates> {
         address: address,
         userType: userType,
       );
-      emit(AuthSuccess());
+      UserModel? user = UserModel(firstName: firstName, lastName: lastName, email: email);
+      emit(AuthSuccess(user));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
   }
 
-  Future<void> login(String email, String password, String userType) async {
+  Future<UserModel?> login(String email, String password, String userType) async {
     emit(AuthLoading());
     try {
-      await _authService.login(email, password, userType);
-      emit(AuthSuccess());
+     final user = await _authService.login(email, password, userType);
+      emit(AuthSuccess(user!));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -67,7 +67,8 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(AuthLoading());
     try {
       Map<String, dynamic> response = await _authService.resetPassword(newPassword, phoneNumber , userType , code);
-      emit(AuthSuccess());
+      UserModel? user = UserModel.fromJson(response['user']);
+      emit(AuthSuccess(user));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
