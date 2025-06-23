@@ -1,6 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_app/patient_layout/data/services/patient_service.dart';
+import 'dart:developer';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:health_care_app/patient_layout/data/services/patient_service.dart';
 import 'doctor_details_state.dart';
 
 class DoctorDetailCubit extends Cubit<DoctorDetailState> {
@@ -10,8 +12,32 @@ class DoctorDetailCubit extends Cubit<DoctorDetailState> {
     emit(DoctorDetailLoading());
     try {
       final doctor = await PatientService.getDoctorById(id);
+
       if (doctor != null) {
-        emit(DoctorDetailLoaded(doctor));
+        double? lat;
+        double? lng;
+
+        // Get coordinates if address is valid
+        if (doctor.address != null && doctor.address!.isNotEmpty) {
+          log("Fetching coordinates for address: ${doctor.address}");
+          try {
+            final locations = await locationFromAddress(doctor.address!);
+            if (locations.isNotEmpty) {
+              lat = locations.first.latitude;
+              lng = locations.first.longitude;
+            }
+            log(lat.toString());
+            log(lng.toString());
+          } catch (e) {
+            log("Geocoding failed: $e");
+          }
+        }
+
+        emit(DoctorDetailLoaded(
+          doctor: doctor,
+          latitude: lat,
+          longitude: lng,
+        ));
       } else {
         emit(DoctorDetailError('Failed to load doctor details'));
       }
