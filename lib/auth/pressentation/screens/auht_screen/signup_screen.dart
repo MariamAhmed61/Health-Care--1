@@ -19,9 +19,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(AuthService()),
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(
             'Sign up',
@@ -34,7 +32,6 @@ class SignupScreen extends StatelessWidget {
         body: userType == 'doctor'
             ? SignUpDoctorBodyBlocConsumer()
             : SignUpUserBodyBlocConsumer(),
-      ),
-    );
+      );
   }
 }
