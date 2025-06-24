@@ -35,11 +35,12 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_otp_text_field: ^1.1.1
 
-  easy_date_timeline: ^2.0.9
+
+  easy_date_timeline: ^1.0.3
   flutter_localizations:
     sdk: flutter
   intl: any
-  google_maps_flutter: ^2.12.1
+  google_maps_flutter: ^2.6.0
   geocoding: ^3.0.0
   url_launcher: ^6.2.5
   geolocator: ^10.1.0
