@@ -24,58 +24,56 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: AppColors.primaryColor, // لون خلفية الستاتس بار
-        statusBarIconBrightness:
-            Brightness.light, // لون الأيقونات (light = أبيض)
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: AppColors.primaryColor, // اللون اللي انتِ عاوزاه هنا
+        statusBarIconBrightness: Brightness.light, // الأيقونات تبقى بيضا
       ),
-    );
-
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: screens[selectedIndex],
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: BottomNavigationBar(
-              backgroundColor: AppColors.white,
-              fixedColor: Colors.black,
-              type: BottomNavigationBarType.fixed,
-              onTap: (value) {
-                selectedIndex = value;
-                setState(() {});
-              },
-              currentIndex: selectedIndex,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              selectedIconTheme:
-                  const IconThemeData(color: AppColors.primaryColor, size: 35),
-              unselectedIconTheme:
-                  const IconThemeData(color: Colors.black, size: 20),
-              items: [
-                BottomNavigationBarItem(
-                  label: S.of(context).home,
-                  icon: const Icon(
-                    Icons.home_outlined,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: screens[selectedIndex],
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: BottomNavigationBar(
+                backgroundColor: AppColors.white,
+                fixedColor: Colors.black,
+                type: BottomNavigationBarType.fixed,
+                onTap: (value) {
+                  selectedIndex = value;
+                  setState(() {});
+                },
+                currentIndex: selectedIndex,
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                selectedIconTheme: const IconThemeData(
+                    color: AppColors.primaryColor, size: 35),
+                unselectedIconTheme:
+                    const IconThemeData(color: Colors.black, size: 20),
+                items: [
+                  BottomNavigationBarItem(
+                    label: S.of(context).home,
+                    icon: const Icon(
+                      Icons.home_outlined,
+                    ),
                   ),
-                ),
-                // BottomNavigationBarItem(
-                //   label: 'Notification',
-                //   icon: Icon(
-                //     Icons.notifications_none,
-                //     color:
-                //     selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
-                //   ),
-                // ),
-                BottomNavigationBarItem(
-                  label: S.of(context).settings,
-                  icon: const Icon(
-                    Icons.settings,
+                  // BottomNavigationBarItem(
+                  //   label: 'Notification',
+                  //   icon: Icon(
+                  //     Icons.notifications_none,
+                  //     color:
+                  //     selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
+                  //   ),
+                  // ),
+                  BottomNavigationBarItem(
+                    label: S.of(context).settings,
+                    icon: const Icon(
+                      Icons.settings,
+                    ),
                   ),
-                ),
-              ]),
+                ]),
+          ),
         ),
       ),
     );
