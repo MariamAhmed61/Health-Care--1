@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:meta/meta.dart';
