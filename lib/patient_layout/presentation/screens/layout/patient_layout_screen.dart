@@ -66,6 +66,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   //     selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
                   //   ),
                   // ),
+
                   BottomNavigationBarItem(
                     label: S.of(context).settings,
                     icon: const Icon(

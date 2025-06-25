@@ -10,6 +10,8 @@ import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart
 import 'package:health_care_app/doctor_layout/setting_screen/wallet_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/medicine/details_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/medicine/sale_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/notification/patient_notification_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/profile/patient_profile.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
@@ -51,6 +53,31 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => ForgotPassword(
           userType: userType,
         ),
+      );
+       case MedicineDetailsScreen.routeName:
+      Map<String, dynamic> arguments =
+          settings.arguments as Map<String, dynamic>;
+      final id = arguments['id'] as String;
+      final name = arguments['name'] as String;
+      final imageUrl = arguments['imageUrl'] as String;
+      final description = arguments['description'] as String;
+      final price = arguments['price'] as int;
+      final quantity = arguments['quantity'] as int;
+      return MaterialPageRoute(
+        builder: (context) => MedicineDetailsScreen(
+          medicine: {
+            'id': id,
+            'name': name,
+            'description': description,
+            'price': price,
+            'imageUrl': imageUrl,
+            'quantity': quantity
+          },
+        ),
+      );
+      case Sale_Screen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => Sale_Screen(),
       );
     case VerifyNumber.routeName:
       Map<String, dynamic> arguments =
