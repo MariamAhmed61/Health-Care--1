@@ -5,6 +5,7 @@ import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/doctor_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/medicine/sale_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
 
 class PatientLayoutScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
     const PatientHomeScreen(),
+    const Sale_Screen(),
     const PatientSettingScreen(),
   ];
 
@@ -26,8 +28,8 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.primaryColor, // اللون اللي انتِ عاوزاه هنا
-        statusBarIconBrightness: Brightness.light, // الأيقونات تبقى بيضا
+        statusBarColor: AppColors.primaryColor, 
+        statusBarIconBrightness: Brightness.light, 
       ),
       child: Scaffold(
         backgroundColor: AppColors.white,
@@ -58,14 +60,13 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                       Icons.home_outlined,
                     ),
                   ),
-                  // BottomNavigationBarItem(
-                  //   label: 'Notification',
-                  //   icon: Icon(
-                  //     Icons.notifications_none,
-                  //     color:
-                  //     selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
-                  //   ),
-                  // ),
+                  BottomNavigationBarItem(
+                    label: 'Sales',
+                    icon: Icon(
+                      Icons.medical_services_outlined,
+                    
+                    ),
+                  ),
 
                   BottomNavigationBarItem(
                     label: S.of(context).settings,

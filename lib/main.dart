@@ -39,7 +39,7 @@ class HealthCare extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             onGenerateRoute: onGenerateRoute,
-            initialRoute: Sale_Screen.routeName,
+            initialRoute: SplashScreen.routeName,
             locale: Locale(state.languageCode),
             supportedLocales: const [
               Locale('en'), // English
