@@ -14,12 +14,15 @@ class PatientProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S
-            .of(context)
-            .profile,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(S.of(context).profile,
+            style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
         centerTitle: true,
-        backgroundColor: AppColors.cyanColor,),
+        backgroundColor: AppColors.primaryColor,
+      ),
       body: Center(
         child: BlocBuilder<AuthCubit, AuthStates>(
           builder: (context, state) {
@@ -34,84 +37,93 @@ class PatientProfile extends StatelessWidget {
                 return const Text('No patient data available',
                     style: TextStyle(fontSize: 16, color: Colors.red));
               }
-            return Column(
-              children: [
-                const SizedBox(height: 20),
-                const CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.transparent,
-                  child: Icon(
-                    Icons.person,
-                    size: 100,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text('${S.of(context).name}:',
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text(
-                          '${patient.firstName} ${patient.lastName}',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+              return Column(
+                children: [
+                  const SizedBox(height: 20),
+                  const CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.person,
+                      size: 100,
+                      color: Colors.grey,
                     ),
                   ),
-                ),
-                
-                const SizedBox(height: 10),
-                Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text('${S.of(context).email}:',
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text(
-                          patient.email,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    _showDialogLogout(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    side: const BorderSide(
-                      color: AppColors.cyanColor,
-                      width: 2,   
-                    ),),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  const SizedBox(height: 20),
+                  Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text('${S.of(context).name}:',
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text(
+                            '${patient.firstName} ${patient.lastName}',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                  child: Text(S.of(context).logout , style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.cyanColor),
+                    ),
                   ),
-                ),
-
-              ],
-            );
-          }
+                  const SizedBox(height: 10),
+                  Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text('${S.of(context).email}:',
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text(
+                            patient.email,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      _showDialogLogout(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white24,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        side: const BorderSide(
+                          color: AppColors.primaryColor,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                    ),
+                    child: Text(
+                      S.of(context).logout,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primaryColor),
+                    ),
+                  ),
+                ],
+              );
+            }
             return const SizedBox.shrink();
-            },
+          },
         ),
       ),
     );
   }
+
   _showDialogLogout(BuildContext context) {
     showDialog(
       context: context,
@@ -128,7 +140,9 @@ class PatientProfile extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen(userType: 'patient')),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const LoginScreen(userType: 'patient')),
                 );
               },
               child: Text(S.of(context).yes),

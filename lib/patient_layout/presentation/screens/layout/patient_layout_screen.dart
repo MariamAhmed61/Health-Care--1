@@ -26,56 +26,48 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.primaryColor, 
-        statusBarIconBrightness: Brightness.light, 
-      ),
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: screens[selectedIndex],
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: BottomNavigationBar(
-                backgroundColor: AppColors.white,
-                fixedColor: Colors.black,
-                type: BottomNavigationBarType.fixed,
-                onTap: (value) {
-                  selectedIndex = value;
-                  setState(() {});
-                },
-                currentIndex: selectedIndex,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                selectedIconTheme: const IconThemeData(
-                    color: AppColors.primaryColor, size: 35),
-                unselectedIconTheme:
-                    const IconThemeData(color: Colors.black, size: 20),
-                items: [
-                  BottomNavigationBarItem(
-                    label: S.of(context).home,
-                    icon: const Icon(
-                      Icons.home_outlined,
-                    ),
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: screens[selectedIndex],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BottomNavigationBar(
+              backgroundColor: AppColors.white,
+              fixedColor: Colors.black,
+              type: BottomNavigationBarType.fixed,
+              onTap: (value) {
+                selectedIndex = value;
+                setState(() {});
+              },
+              currentIndex: selectedIndex,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              selectedIconTheme:
+                  const IconThemeData(color: AppColors.primaryColor, size: 35),
+              unselectedIconTheme:
+                  const IconThemeData(color: Colors.black, size: 20),
+              items: [
+                BottomNavigationBarItem(
+                  label: S.of(context).home,
+                  icon: const Icon(
+                    Icons.home_outlined,
                   ),
-                  BottomNavigationBarItem(
-                    label: 'Sales',
-                    icon: Icon(
-                      Icons.medical_services_outlined,
-                    
-                    ),
+                ),
+                BottomNavigationBarItem(
+                  label: 'Sales',
+                  icon: Icon(
+                    Icons.medical_services_outlined,
                   ),
-
-                  BottomNavigationBarItem(
-                    label: S.of(context).settings,
-                    icon: const Icon(
-                      Icons.settings,
-                    ),
+                ),
+                BottomNavigationBarItem(
+                  label: S.of(context).settings,
+                  icon: const Icon(
+                    Icons.settings,
                   ),
-                ]),
-          ),
+                ),
+              ]),
         ),
       ),
     );

@@ -36,7 +36,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
         if (state is DoctorDetailLoading) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.cyanColor,
+              backgroundColor: AppColors.primaryColor,
               elevation: 0,
               iconTheme: const IconThemeData(color: Colors.black),
             ),
@@ -47,7 +47,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
         } else if (state is DoctorDetailError) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.cyanColor,
+              backgroundColor: AppColors.primaryColor,
               elevation: 0,
               iconTheme: const IconThemeData(color: Colors.black),
             ),
@@ -58,22 +58,22 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.cyanColor,
+              backgroundColor: AppColors.primaryColor,
               elevation: 0,
-              iconTheme: const IconThemeData(color: Colors.black),
+              iconTheme: const IconThemeData(color: Colors.white),
             ),
             body: Column(
               children: [
                 Container(
                   width: double.infinity,
-                  color: AppColors.cyanColor,
+                  color: AppColors.primaryColor,
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Column(
                     children: [
                       Text(
                         S.of(context).doctor_profile,
                         style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -83,7 +83,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const CircleAvatar(
-                            backgroundColor: AppColors.primaryColor,
+                            backgroundColor: AppColors.cyanColor,
                             radius: 33,
                             child: CircleAvatar(
                               radius: 30,
@@ -103,34 +103,38 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                doctor.specialization ?? S.of(context).no_specialization,
+                                doctor.specialization ??
+                                    S.of(context).no_specialization,
                                 style: const TextStyle(
                                   fontSize: 15,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                               const SizedBox(height: 8),
                               Row(
                                 children: [
-                                  const Icon(Icons.star_rounded, color: Color(0xffFFC700)),
+                                  const Icon(Icons.star_rounded,
+                                      color: Color(0xffFFC700)),
                                   const SizedBox(width: 5),
                                   Text(
                                     doctor.averageRating ?? '0.0',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 8),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 2),
                                 color: const Color(0xffD9D9D9),
                                 child: const Text('\$100'),
                               ),
@@ -146,7 +150,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(16)),
                     ),
                     padding: const EdgeInsets.all(16),
                     child: Column(
@@ -194,8 +199,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           ],
                         ),
                         const SizedBox(height: 15),
-
-                        
                         if (state.latitude != null && state.longitude != null)
                           Stack(
                             alignment: Alignment.center,
@@ -203,22 +206,27 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               SizedBox(
                                 height: 200,
                                 child: GoogleMap(
-                                  onTap: (LatLng latLng) => _openGPS(latLng.latitude, latLng.longitude),
+                                  onTap: (LatLng latLng) => _openGPS(
+                                      latLng.latitude, latLng.longitude),
                                   initialCameraPosition: CameraPosition(
-                                    target: LatLng(state.latitude!, state.longitude!),
+                                    target: LatLng(
+                                        state.latitude!, state.longitude!),
                                     zoom: 14,
                                   ),
                                   markers: {
                                     Marker(
-                                      markerId: const MarkerId("doctor_location"),
-                                      position: LatLng(state.latitude!, state.longitude!),
+                                      markerId:
+                                          const MarkerId("doctor_location"),
+                                      position: LatLng(
+                                          state.latitude!, state.longitude!),
                                       infoWindow: InfoWindow(
                                         title: "Dr. ${doctor.firstName}",
                                         snippet: doctor.address,
                                       ),
                                     ),
                                   },
-                                  onMapCreated: (GoogleMapController controller) {
+                                  onMapCreated:
+                                      (GoogleMapController controller) {
                                     setState(() {
                                       isMapLoading = false;
                                     });
@@ -236,9 +244,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           )
                         else
                           const Center(child: Text("Location not available")),
-
                         const Spacer(),
-
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
@@ -247,12 +253,13 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               ));
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                              backgroundColor: Colors.white30,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 side: const BorderSide(
-                                  color: AppColors.cyanColor,
+                                  color: AppColors.primaryColor,
                                   width: 2,
                                 ),
                               ),
@@ -261,7 +268,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               S.of(context).book_appointment,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.cyanColor,
+                                color: AppColors.primaryColor,
                               ),
                             ),
                           ),
@@ -279,7 +286,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
       },
     );
   }
-    void _openGPS(double lat, double lng) async {
+
+  void _openGPS(double lat, double lng) async {
     final Uri url = Uri.parse("google.navigation:q=$lat,$lng");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
