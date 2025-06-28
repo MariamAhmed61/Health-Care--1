@@ -18,6 +18,7 @@ class _Sale_ScreenState extends State<Sale_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: AppColors.primaryColor),
         title: Text(
           'Medicines',
           style: TextStyle(color: Colors.white),

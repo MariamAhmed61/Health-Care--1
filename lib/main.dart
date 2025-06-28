@@ -11,6 +11,7 @@ import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/
 import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/language_cubit/language_state.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/medicine/sale_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/payment/payment_details.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
 
 import 'generated/l10n.dart';

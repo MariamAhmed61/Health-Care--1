@@ -19,7 +19,7 @@ class PatientSettingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Center(
+              Center(
                 child: Text(
                   S.of(context).settings,
                   style: const TextStyle(
@@ -28,42 +28,28 @@ class PatientSettingScreen extends StatelessWidget {
                       color: Colors.black),
                 ),
               ),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: () {},
-                child:  Row(
-                  children: [
-                    const Icon((Icons.wallet)),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      S.of(context).my_wallet,
-                      style: const TextStyle(fontSize: 18, color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                ),
+              const SizedBox(
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, 'patient_profile');
                 },
-                child:  Row(
+                child: Row(
                   children: [
-                    const Icon(Icons.person),
+                    const Icon(
+                      Icons.person,
+                      size: 35,
+                    ),
                     const SizedBox(
-                      width: 10,
+                      width: 8,
                     ),
                     Text(
                       S.of(context).profile,
-                      style: const TextStyle(fontSize: 18, color: Colors.black),
+                      style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -109,7 +95,7 @@ class PatientSettingScreen extends StatelessWidget {
                     //   },
                     // );
                   },
-                  child:   Row(
+                  child: Row(
                     children: [
                       const Icon(
                         Icons.lock_clock_rounded,
@@ -130,10 +116,10 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
-                     Navigator.pushNamed(context, 'forgotPassword',
-                                      arguments:'patient');
+                    Navigator.pushNamed(context, 'forgotPassword',
+                        arguments: 'patient');
                   },
-                  child:  Row(
+                  child: Row(
                     children: [
                       const Icon(
                         Icons.lock_clock_rounded,
@@ -157,7 +143,7 @@ class PatientSettingScreen extends StatelessWidget {
                   thickness: 1,
                 ),
               ),
-               Text(
+              Text(
                 S.of(context).general,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
@@ -165,7 +151,7 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {},
-                  child:  Row(
+                  child: Row(
                     children: [
                       const Icon(
                         Icons.notifications,
@@ -185,77 +171,92 @@ class PatientSettingScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) {
-                          String selectedLang = context.read<LanguageCubit>().state.languageCode == 'ar' ? 'Arabic' : 'English'; 
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        String selectedLang =
+                            context.read<LanguageCubit>().state.languageCode ==
+                                    'ar'
+                                ? 'Arabic'
+                                : 'English';
 
-                          return StatefulBuilder(
-                            builder: (context, setState) {
-                              return AlertDialog(
-                                title:  Text(S.of(context).select_language),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListTile(
-                                      title:  Text(S.of(context).english),
-                                      trailing: Checkbox(
-                                        value: selectedLang == 'English',
-                                        onChanged: (_) {
-                                          setState(() {
-                                            selectedLang = 'English';
-                                          });
-                                        },
-                                      ),
-                                      onTap: () {
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title: Text(S.of(context).select_language),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ListTile(
+                                    title: Text(S.of(context).english),
+                                    trailing: Checkbox(
+                                      value: selectedLang == 'English',
+                                      onChanged: (_) {
                                         setState(() {
                                           selectedLang = 'English';
                                         });
                                       },
                                     ),
-                                    ListTile(
-                                      title:  Text(S.of(context).arabic),
-                                      trailing: Checkbox(
-                                        value: selectedLang == 'Arabic',
-                                        onChanged: (_) {
-                                          setState(() {
-                                            selectedLang = 'Arabic';
-                                          });
-                                        },
-                                      ),
-                                      onTap: () {
+                                    onTap: () {
+                                      setState(() {
+                                        selectedLang = 'English';
+                                      });
+                                    },
+                                  ),
+                                  ListTile(
+                                    title: Text(S.of(context).arabic),
+                                    trailing: Checkbox(
+                                      value: selectedLang == 'Arabic',
+                                      onChanged: (_) {
                                         setState(() {
                                           selectedLang = 'Arabic';
                                         });
                                       },
                                     ),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                     String langCode = context.read<LanguageCubit>().state.languageCode;
-                                      if(selectedLang == 'English' && langCode != 'en') {
-                                        context.read<LanguageCubit>().changeLanguage('en');
-                                      } else if(selectedLang == 'Arabic' && langCode != 'ar') {
-                                        context.read<LanguageCubit>().changeLanguage('ar');
-                                      }
-                                      Navigator.of(context).pop();
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text('${S.of(context).language_changed_to}  $selectedLang')),
-                                      );
+                                    onTap: () {
+                                      setState(() {
+                                        selectedLang = 'Arabic';
+                                      });
                                     },
-                                    child:  Text(S.of(context).save),
                                   ),
                                 ],
-                              );
-                            },
-                          );
-                        },
-                      );
-                    },
-                  child:  Row(
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    String langCode = context
+                                        .read<LanguageCubit>()
+                                        .state
+                                        .languageCode;
+                                    if (selectedLang == 'English' &&
+                                        langCode != 'en') {
+                                      context
+                                          .read<LanguageCubit>()
+                                          .changeLanguage('en');
+                                    } else if (selectedLang == 'Arabic' &&
+                                        langCode != 'ar') {
+                                      context
+                                          .read<LanguageCubit>()
+                                          .changeLanguage('ar');
+                                    }
+                                    Navigator.of(context).pop();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              '${S.of(context).language_changed_to}  $selectedLang')),
+                                    );
+                                  },
+                                  child: Text(S.of(context).save),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
                     children: [
                       const Icon(
                         Icons.language,
@@ -276,7 +277,7 @@ class PatientSettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {},
-                  child:  Row(
+                  child: Row(
                     children: [
                       const Icon(
                         Icons.question_mark,

@@ -459,6 +459,14 @@ class S {
       args: [],
     );
   }
+  String get visa {
+    return Intl.message(
+      'Visa',
+      name: 'visa',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Done`
   String get done {

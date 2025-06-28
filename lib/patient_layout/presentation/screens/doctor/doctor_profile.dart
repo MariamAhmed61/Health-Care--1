@@ -253,13 +253,13 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               ));
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white30,
+                              backgroundColor: AppColors.primaryColor,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 side: const BorderSide(
-                                  color: AppColors.primaryColor,
+                                  color: Colors.white,
                                   width: 2,
                                 ),
                               ),
@@ -268,7 +268,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               S.of(context).book_appointment,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primaryColor,
+                                color: Colors.white,
                               ),
                             ),
                           ),

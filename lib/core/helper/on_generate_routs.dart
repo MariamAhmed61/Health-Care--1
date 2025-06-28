@@ -13,6 +13,7 @@ import 'package:health_care_app/patient_layout/presentation/screens/layout/patie
 import 'package:health_care_app/patient_layout/presentation/screens/medicine/details_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/medicine/sale_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/notification/patient_notification_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/payment/payment_details.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/profile/patient_profile.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
 import 'package:health_care_app/splash/views/splash_screen.dart';
@@ -54,7 +55,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           userType: userType,
         ),
       );
-       case MedicineDetailsScreen.routeName:
+    case MedicineDetailsScreen.routeName:
       Map<String, dynamic> arguments =
           settings.arguments as Map<String, dynamic>;
       final id = arguments['id'] as String;
@@ -75,7 +76,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           },
         ),
       );
-      case Sale_Screen.routeName:
+    case Sale_Screen.routeName:
       return MaterialPageRoute(
         builder: (context) => Sale_Screen(),
       );
@@ -132,8 +133,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const PatientSettingScreen(),
       );
+    case PaymentDetailsScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const PaymentDetailsScreen(),
+      );
     case PatientProfile.routeName:
-      return MaterialPageRoute(builder: (context)=>const PatientProfile());
+      return MaterialPageRoute(builder: (context) => const PatientProfile());
 
     default:
       return MaterialPageRoute(
