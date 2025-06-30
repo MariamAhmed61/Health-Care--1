@@ -28,23 +28,37 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^4.15.0
   cupertino_icons: ^1.0.6
   dio: ^5.8.0+1
+  easy_date_timeline: ^1.0.3
+  firebase_core: ^2.25.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_credit_card: ^4.1.0
+  flutter_easy_dialogs: ^4.0.3
+  flutter_localizations:
+    sdk: flutter
   flutter_otp_text_field: ^1.1.1
- 
+  geocoding: ^3.0.0
+  geolocator: ^10.1.0
+  google_maps_flutter: ^2.6.0
+  intl: any
+  url_launcher: ^6.2.5
+
 
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
+  intl_utils: ^2.8.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -70,3 +84,5 @@ flutter:
         - asset: assets/fonts/Pacifico-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

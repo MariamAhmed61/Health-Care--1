@@ -1,25 +1,30 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:health_care_app/auth/data/models/user_model.dart';
+import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 
 class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://healthcare-xi-pied.vercel.app/api',
+      baseUrl: 'https://healthcare-4scv.vercel.app/api',
     ),
   );
 
-  Future<String> login(String email, String password, String userType) async {
+  Future<UserModel?> login(String email, String password, String userType) async {
     try {
-      Response response = await _dio.post(
-        '${_dio.options.baseUrl}/auth/login',
-        data: {'email': email, 'password': password, 'userType': userType},
-      );
+  Response response = await _dio.post(
+    '${_dio.options.baseUrl}/auth/login',
+    data: {'email': email, 'password': password, 'userType': userType},
+  );
+
+  print('Response status code: ${response.statusCode}');
+  print('Response data: ${response.data}');
 
       if (response.statusCode == 200) {
-        return 'success';
+        print(response.data);
+        return UserModel.fromJson(response.data['user']);
       } else {
-        return 'failed';
+        throw Exception('Failed to login');
       }
     } on DioException catch (e) {
       final errorMessage =
@@ -74,21 +79,59 @@ class AuthService {
     }
   }
 
-  Future<void> deleteUser(String userId) async {
+  Future<Map<String, dynamic>> sendCode(
+      String phoneNumber, String userType) async {
     try {
-      final response = await _dio.delete(
-        'http://healthcare-xi-pied.vercel.app/api/patients/patients/:id',
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/forgot-password',
+        data: {'phoneNumber': phoneNumber, 'userType': userType},
       );
 
-      if (response.statusCode == 200 || response.statusCode == 204) {
-        print('User deleted successfully');
+      if (response.statusCode == 200) {
+        return response.data;
       } else {
-        print('Failed to delete user: ${response.statusCode}');
+        return response.data;
       }
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.data ?? e.message}');
+      final errorMessage =
+          e.response?.data['message'] ?? 'Oops, something went wrong';
+      log('Data: ${e.response?.data}');
+
+      throw Exception(errorMessage);
     } catch (e) {
-      print('Unexpected error: $e');
+      log('Signup error: $e');
+      throw Exception('Oops, something went wrong');
     }
   }
+
+  Future<Map<String, dynamic>> resetPassword(String newPassword,
+      String phoneNumber, String userType, String code) async {
+    try {
+      Response response = await _dio.post(
+        '${_dio.options.baseUrl}/auth/reset-password',
+        data: {
+          'newPassword': newPassword,
+          'phoneNumber': phoneNumber,
+          'userType': userType,
+          'code': code
+        },
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        return response.data;
+      }
+    } on DioException catch (e) {
+      final errorMessage =
+          e.response?.data['message'] ?? 'Oops, something went wrong';
+      throw Exception(errorMessage);
+    } catch (e) {
+      log('Signup error: $e');
+      throw Exception('Oops, something went wrong');
+    }
+  }
+   
 }
+
+
+

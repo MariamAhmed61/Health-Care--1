@@ -34,19 +34,47 @@ class AuthCubit extends Cubit<AuthStates> {
         address: address,
         userType: userType,
       );
-      emit(AuthSuccess());
+      UserModel? user = UserModel(firstName: firstName, lastName: lastName, email: email);
+      emit(AuthSuccess(user));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
   }
 
-  Future<void> login(String email, String password , String userType) async {
+  Future<UserModel?> login(String email, String password, String userType) async {
     emit(AuthLoading());
     try {
-      await _authService.login(email, password, userType );
-      emit(AuthSuccess());
+     final user = await _authService.login(email, password, userType);
+      emit(AuthSuccess(user!));
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
     }
   }
+
+  Future<void> sendCode(String phoneNumber, String userType) async {
+    emit(AuthLoading());
+    try {
+      Map<String, dynamic> response =
+          await _authService.sendCode(phoneNumber, userType);
+      String code = response['code'];
+      emit(AuthCodeSent(code));
+    } on Exception catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> resetPassword(String newPassword, String phoneNumber , String userType , String code) async {
+    emit(AuthLoading());
+    try {
+      Map<String, dynamic> response = await _authService.resetPassword(newPassword, phoneNumber , userType , code);
+      UserModel? user = UserModel.fromJson(response['user']);
+      emit(AuthSuccess(user));
+    } on Exception catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+  
+ 
 }
+
+

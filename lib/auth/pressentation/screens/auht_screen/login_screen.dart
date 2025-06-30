@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
@@ -10,7 +12,7 @@ import 'package:health_care_app/auth/pressentation/custom_widgets/customButton.d
 import 'package:health_care_app/auth/pressentation/custom_widgets/customTextField.dart';
 import 'package:health_care_app/auth/pressentation/custom_widgets/custom_social_media.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
-import 'package:health_care_app/patient_layout/patient_layout_screen.dart';
+import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? userType;
@@ -25,14 +27,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   late String email, password;
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(AuthService()),
-      child: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             title: Text(
               'Login',
@@ -61,7 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             builder: (context, state) {
               return state is AuthLoading
-                  ? const Center(child: CircularProgressIndicator( color:  AppColors.primaryColor,))
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: AppColors.primaryColor,
+                    ))
                   : SingleChildScrollView(
                       child: Form(
                         key: _formKey,
@@ -91,8 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 left: 240, top: 10, bottom: 10),
                             child: TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, 'forgotPassword');
+                                  Navigator.pushNamed(context, 'forgotPassword',
+                                      arguments: widget.userType.toString());
+                                  log(widget.userType.toString());
                                 },
                                 child: Text(
                                   'Forgot Password?',
@@ -105,8 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               log(widget.userType.toString());
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                BlocProvider.of<AuthCubit>(context)
-                                    .login(email, password, widget.userType!);
+                                                                context.read<AuthCubit>().login(email, password, widget.userType!);
+
                               } else {
                                 setState(() {
                                   _autovalidateMode = AutovalidateMode.always;
@@ -118,21 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               top: 50,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              bottom: 20,
-                            ),
-                            child: Text(
-                              'OR',
-                              style: TextStyle(
-                                  color: AppColors.primaryColor, fontSize: 20),
-                            ),
-                          ),
-                          Text('Login with',
-                              style: TextStyle(color: AppColors.primaryColor)),
-                          const SizedBox(height: 50),
-                          CustomSocialMedia(),
+                          const SizedBox(height: 230),
                           Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: Row(
@@ -162,9 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ]),
                       ),
                     );
-              ;
+              
             },
-          )),
-    );
+          ));
   }
 }

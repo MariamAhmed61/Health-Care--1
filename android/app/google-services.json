@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147762889057",
+    "project_id": "medicines-32824",
+    "storage_bucket": "medicines-32824.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147762889057:android:1ea8eaf060d45e68380520",
+        "android_client_info": {
+          "package_name": "com.example.health_care_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpQUsVB-J_wLmjruWh_WXMV57_7SvahV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
