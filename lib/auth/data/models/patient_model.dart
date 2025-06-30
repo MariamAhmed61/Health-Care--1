@@ -11,25 +11,25 @@ class PatientModel  extends UserModel {
     required String phoneNumber,
     required String address,
   }) : super(
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          confirmPassword: confirmPassword,
-       
-          userType: userType,
-          phoneNumber: phoneNumber,
-          address: address,
-        );
-      factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        email: json['email'],
-        password: json['password'],
-        confirmPassword: json['confirmPassword'],
-       
-        userType: json['userType'],
-        phoneNumber: json['phoneNumber'],
-        address: json['address'],
-      );
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: password,
+    confirmPassword: confirmPassword,
+
+    userType: userType,
+    phoneNumber: phoneNumber,
+    address: address,
+  );
+  factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
+    firstName: json['firstName'],
+    lastName: json['lastName'],
+    email: json['email'],
+    password: json['password'],
+    confirmPassword: json['confirmPassword'],
+
+    userType: json['userType'],
+    phoneNumber: json['phoneNumber'],
+    address: json['address'],
+  );
 } 
