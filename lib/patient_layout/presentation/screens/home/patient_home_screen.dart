@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:health_care_app/chat/presentation/screens/chat_icon_button.dart';
+import 'package:health_care_app/chat/presentation/screens/chat_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/generated/l10n.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/doctor_profile_screen.dart';
@@ -13,8 +15,9 @@ import '../../cubits/doctor_cubit/doctor_state.dart';
 
 class PatientHomeScreen extends StatelessWidget {
   static const routeName = 'patient-home';
-
-  const PatientHomeScreen({super.key});
+  const PatientHomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +93,16 @@ class PatientHomeScreen extends StatelessWidget {
                                             title: Text(
                                               'Dr. ${doctor.firstName} ${doctor.lastName}',
                                               style: const TextStyle(
-                                                  fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                             subtitle: Text(
                                               doctor.specialization ?? '',
                                               style:
                                                   const TextStyle(fontSize: 10),
+                                            ),
+                                            trailing: ChatIconButton(
+                                              doctorId: doctor.id!,
                                             ),
                                           ),
                                         ),
@@ -154,7 +161,7 @@ class PatientHomeScreen extends StatelessWidget {
                               '${state.user.firstName} ${state.user.lastName}',
                               style: const TextStyle(
                                   color: AppColors.white,
-                                  fontSize: 20,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold),
                             ),
                           ],

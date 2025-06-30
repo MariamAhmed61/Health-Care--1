@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:health_care_app/auth/data/services/auth_service.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
+import 'package:health_care_app/chat/data/message_service.dart';
+import 'package:health_care_app/chat/presentation/cubit/message_cubit.dart';
 import 'package:health_care_app/core/helper/on_generate_routs.dart';
 import 'package:health_care_app/firebase_options.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/doctor_cubit.dart';
@@ -33,7 +35,9 @@ class HealthCare extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => DoctorCubit()..fetchDoctors()),
         BlocProvider(create: (context) => AuthCubit(AuthService())),
-        BlocProvider(create: (context) => LanguageCubit())
+        BlocProvider(create: (context) => LanguageCubit()),
+        BlocProvider(create: (context) => MessageCubit(MessageService())),
+
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {

@@ -3,6 +3,7 @@ import 'package:health_care_app/auth/pressentation/screens/auht_screen/create_pa
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/signup_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/forgot_pass_screen.dart';
 import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_screen.dart';
+import 'package:health_care_app/chat/presentation/screens/chat_screen.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
@@ -92,6 +93,21 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           phoneNumber: phoneNumber,
           userType: userType,
           code: code,
+        ),
+      );
+    case ChatScreen.routeName:
+      Map<String, dynamic> arguments =
+          settings.arguments as Map<String, dynamic>;
+      final senderId = arguments['senderId'] as String;
+      final receiverId = arguments['receiverId'] as String;
+      final receiverType = arguments['receiverType'] as String;
+      final senderType = arguments['senderType'] as String;
+      return MaterialPageRoute(
+        builder: (context) => ChatScreen(
+          senderId: '$senderId',
+          receiverId: '$receiverId',
+          receiverType: '$receiverType',
+          senderType: '$senderType',
         ),
       );
 
