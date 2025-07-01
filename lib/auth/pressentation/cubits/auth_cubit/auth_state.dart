@@ -5,14 +5,19 @@ sealed class AuthStates {}
 
 final class AuthInitial extends AuthStates {}
 
+final class AuthLoading extends AuthStates {}
+
 final class AuthSuccess extends AuthStates {
-  final String? userType;
-  AuthSuccess({this.userType});
+  final UserModel? user;
+  final DoctorProfileModel? doctor;
+
+  AuthSuccess({
+    this.user,
+    this.doctor,
+  });
 }
 
 final class AuthError extends AuthStates {
   final String message;
   AuthError(this.message);
 }
-
-final class AuthLoading extends AuthStates {}

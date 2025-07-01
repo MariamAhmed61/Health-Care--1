@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_app/core/constants/app_assets/profile_image_widget.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:health_care_app/auth/pressentation/cubits/doctor_cubit/doctor_cubit.dart';
 
 class WalletScreen extends StatelessWidget {
   static const routeName = 'wallet';
@@ -8,6 +13,10 @@ class WalletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthCubit>().state;
+    final doctorName =
+    authState is AuthSuccess ? authState.user?.firstName ?? '' : 'Doctor';
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -15,129 +24,147 @@ class WalletScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: Column(
-          children: [
-            const Center(
-              child: Text(
-                'Wallet ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(24)),
-                child:const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child:  Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+        body: BlocBuilder<DoctorCubit, DoctorState>(
+          builder: (context, state) {
+            if (state is DoctorLoaded) {
+              final balance = state.doctor.balance;
+
+              return Column(
+                children: [
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.wallet,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
                         children: [
-                          Text(
-                            'Main balance',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text(
-                              'Your Balance',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.mainBalance,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Text(
+                                    'Your Balance',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  '\$ $balance',
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            '\$ 1500',
-                            style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          )
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.white,
+                              radius: 33,
+                              child: Center(
+                                child: ProfileImage(
+                                  firstName: doctorName,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Spacer(),
-                    Padding(
-                      padding:  EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.white,
-                        radius: 33,
-                        child: Center(
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/apple.png'),
-                            radius: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const Row(
-              children: [
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    'My Transaction',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        tileColor: Colors.grey.withOpacity(.2),
-                        leading: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child:const Icon(
-                            Icons.subdirectory_arrow_left_sharp,
-                            color: Colors.white,
-                          ),
-                        ),
-                        title:const Text(
-                          'Receive',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle:const Text('17/08/2023: 02:30'),
-                        trailing: const Text(
-                          '+\$5',
+                  const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'My Transaction',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
+                              fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                       ),
+                    ],
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              tileColor: Colors.grey.withOpacity(.2),
+                              leading: Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(
+                                  Icons.subdirectory_arrow_left_sharp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              title: const Text(
+                                'Receive',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: const Text('17/08/2023: 02:30'),
+                              trailing: const Text(
+                                '+\$5',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: 4,
                     ),
-                  );
-                },
-                itemCount: 4,
-              ),
-            )
-          ],
+                  ),
+                ],
+              );
+            } else if (state is DoctorLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return const Center(child: Text('Failed to load balance'));
+            }
+          },
         ),
       ),
     );

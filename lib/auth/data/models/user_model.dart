@@ -22,14 +22,14 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-  specialization: json['specialization'],
-  userType: json['userType'],
-  firstName: json['firstName'],
-  lastName: json['lastName'],
-  email: json['email'],
-  phoneNumber: json['phoneNumber'],
-  address: json['address'],
-  password: '',          // مش بيرجع من السيرفر
-  confirmPassword: '',   // مش بيرجع من السيرفر
-);
+    specialization: json['specialization'],
+    userType: json['userType'],
+    firstName: json['firstName'],
+    lastName: json['lastName'],
+    email: json['email'],
+    phoneNumber: json['phoneNumber'],
+    address: json['address'],
+    password: '',          // مش بيرجع من السيرفر
+    confirmPassword: '',   // مش بيرجع من السيرفر
+  );
 }
