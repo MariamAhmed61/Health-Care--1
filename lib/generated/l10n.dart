@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Welcome Doctor `
+  String get welcomeDoctor {
+    return Intl.message(
+      'Welcome Doctor ',
+      name: 'welcomeDoctor',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Submit`
   String get submit {
     return Intl.message(
@@ -153,18 +163,8 @@ class S {
   /// `Welcome to the Health Care App`
   String get welcome_message {
     return Intl.message(
-      'Welcome to the Medical App',
+      'Welcome to the Health Care App',
       name: 'welcome_message',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Settings`
-  String get settings {
-    return Intl.message(
-      'Settings',
-      name: 'settings',
       desc: '',
       args: [],
     );
@@ -235,16 +235,6 @@ class S {
     return Intl.message(
       'Security',
       name: 'security',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change`
-  String get change {
-    return Intl.message(
-      'Change',
-      name: 'change',
       desc: '',
       args: [],
     );
@@ -325,16 +315,6 @@ class S {
     return Intl.message(
       'Let\'s Find Your Specialist',
       name: 'lets_find_doctor',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search`
-  String get search {
-    return Intl.message(
-      'Search',
-      name: 'search',
       desc: '',
       args: [],
     );
@@ -459,14 +439,6 @@ class S {
       args: [],
     );
   }
-  String get visa {
-    return Intl.message(
-      'Visa',
-      name: 'visa',
-      desc: '',
-      args: [],
-    );
-  }
 
   /// `Done`
   String get done {
@@ -493,16 +465,6 @@ class S {
     return Intl.message(
       'Profile',
       name: 'profile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Logout`
-  String get logout {
-    return Intl.message(
-      'Logout',
-      name: 'logout',
       desc: '',
       args: [],
     );
@@ -553,6 +515,576 @@ class S {
     return Intl.message(
       'Yes',
       name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Doctor `
+  String get welcome {
+    return Intl.message(
+      'Welcome Doctor ',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have A Nice Day`
+  String get haveANiceDay {
+    return Intl.message(
+      'Have A Nice Day',
+      name: 'haveANiceDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search By Date (e.g. 13 Aug)`
+  String get search {
+    return Intl.message(
+      'Search By Date (e.g. 13 Aug)',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming Appointments`
+  String get upcomingAppointments {
+    return Intl.message(
+      'Upcoming Appointments',
+      name: 'upcomingAppointments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Setting`
+  String get setting {
+    return Intl.message(
+      'Setting',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive Notification`
+  String get receiveNotifications {
+    return Intl.message(
+      'Receive Notification',
+      name: 'receiveNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vibration`
+  String get vibration {
+    return Intl.message(
+      'Vibration',
+      name: 'vibration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help and Support`
+  String get helpSupport {
+    return Intl.message(
+      'Help and Support',
+      name: 'helpSupport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Need Help or have a question?`
+  String get needHelp {
+    return Intl.message(
+      'Need Help or have a question?',
+      name: 'needHelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Frequently Asked Questions`
+  String get faq {
+    return Intl.message(
+      'Frequently Asked Questions',
+      name: 'faq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you have any issues or inquiries, please contact us through one of the methods below.`
+  String get supportMessage {
+    return Intl.message(
+      'If you have any issues or inquiries, please contact us through one of the methods below.',
+      name: 'supportMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you need help, feel free to reach out to us. We're here to support you.`
+  String get contactUsDescription {
+    return Intl.message(
+      'If you need help, feel free to reach out to us. We\'re here to support you.',
+      name: 'contactUsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live Chat`
+  String get liveChat {
+    return Intl.message(
+      'Live Chat',
+      name: 'liveChat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support`
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How do I reset my password?`
+  String get faqQ1 {
+    return Intl.message(
+      'How do I reset my password?',
+      name: 'faqQ1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Settings > Change Password and follow the instructions.`
+  String get faqA1 {
+    return Intl.message(
+      'Go to Settings > Change Password and follow the instructions.',
+      name: 'faqA1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How can I contact support?`
+  String get faqQ2 {
+    return Intl.message(
+      'How can I contact support?',
+      name: 'faqQ2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can contact us through the support screen via WhatsApp.`
+  String get faqA2 {
+    return Intl.message(
+      'You can contact us through the support screen via WhatsApp.',
+      name: 'faqA2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How can I book a new appointment?`
+  String get faqQ3 {
+    return Intl.message(
+      'How can I book a new appointment?',
+      name: 'faqQ3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From the home screen, tap on 'Book Appointment' and select the doctor and preferred date.`
+  String get faqA3 {
+    return Intl.message(
+      'From the home screen, tap on \'Book Appointment\' and select the doctor and preferred date.',
+      name: 'faqA3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat with us on WhatsApp`
+  String get chatWithUs {
+    return Intl.message(
+      'Chat with us on WhatsApp',
+      name: 'chatWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to logout?`
+  String get areYouSureLogout {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'areYouSureLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Logout`
+  String get logoutConfirmationTitle {
+    return Intl.message(
+      'Confirm Logout',
+      name: 'logoutConfirmationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logged out successfully`
+  String get logoutSuccess {
+    return Intl.message(
+      'Logged out successfully',
+      name: 'logoutSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Image From Gallery`
+  String get chooseImageFromGallery {
+    return Intl.message(
+      'Choose Image From Gallery',
+      name: 'chooseImageFromGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Image`
+  String get deleteImage {
+    return Intl.message(
+      'Delete Image',
+      name: 'deleteImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Image`
+  String get showImage {
+    return Intl.message(
+      'Show Image',
+      name: 'showImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Image`
+  String get change {
+    return Intl.message(
+      'Change Image',
+      name: 'change',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available Slots`
+  String get available {
+    return Intl.message(
+      'Available Slots',
+      name: 'available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Date`
+  String get selectDate {
+    return Intl.message(
+      'Select Date',
+      name: 'selectDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Time`
+  String get selectTime {
+    return Intl.message(
+      'Select Time',
+      name: 'selectTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Slot`
+  String get addSlot {
+    return Intl.message(
+      'Add Slot',
+      name: 'addSlot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter both date and time.`
+  String get pleaseEnterDateTime {
+    return Intl.message(
+      'Please enter both date and time.',
+      name: 'pleaseEnterDateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Slot`
+  String get deleteSlot {
+    return Intl.message(
+      'Delete Slot',
+      name: 'deleteSlot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this slot?`
+  String get confirmDeleteSlot {
+    return Intl.message(
+      'Are you sure you want to delete this slot?',
+      name: 'confirmDeleteSlot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Time to Delete`
+  String get selectTimeToDelete {
+    return Intl.message(
+      'Select Time to Delete',
+      name: 'selectTimeToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slot deleted successfully`
+  String get slotDeleted {
+    return Intl.message(
+      'Slot deleted successfully',
+      name: 'slotDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time slot deleted successfully`
+  String get timeSlotDeleted {
+    return Intl.message(
+      'Time slot deleted successfully',
+      name: 'timeSlotDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slots updated successfully`
+  String get slotsUpdated {
+    return Intl.message(
+      'Slots updated successfully',
+      name: 'slotsUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to update:`
+  String get updateFailed {
+    return Intl.message(
+      'Failed to update:',
+      name: 'updateFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No bookings on this date`
+  String get bookSearch {
+    return Intl.message(
+      'No bookings on this date',
+      name: 'bookSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Appointments Found`
+  String get noAppointmentsFound {
+    return Intl.message(
+      'No Appointments Found',
+      name: 'noAppointmentsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Price`
+  String get editPrice {
+    return Intl.message(
+      'Edit Price',
+      name: 'editPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new price`
+  String get enterNewPrice {
+    return Intl.message(
+      'Enter new price',
+      name: 'enterNewPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EGP`
+  String get egp {
+    return Intl.message(
+      'EGP',
+      name: 'egp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Examination Price`
+  String get examinationPrice {
+    return Intl.message(
+      'Examination Price',
+      name: 'examinationPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main balance`
+  String get mainBalance {
+    return Intl.message(
+      'Main balance',
+      name: 'mainBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `logout`
+  String get logout {
+    return Intl.message(
+      'logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `visa`
+  String get visa {
+    return Intl.message(
+      'visa',
+      name: 'visa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search By Date (e.g. 13 Aug)`
+  String get searchByDate {
+    return Intl.message(
+      'Search By Date (e.g. 13 Aug)',
+      name: 'searchByDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enterDateAndTime`
+  String get enterDateAndTime {
+    return Intl.message(
+      'enterDateAndTime',
+      name: 'enterDateAndTime',
       desc: '',
       args: [],
     );

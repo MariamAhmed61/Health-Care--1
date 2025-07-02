@@ -27,7 +27,7 @@ class ChatIconButton extends StatelessWidget {
   final authState = context.read<AuthCubit>().state;
 
   if (authState is AuthSuccess) {
-    final senderId = authState.user.id;
+    final senderId = authState.user?.id;
 
     Navigator.push(
       context,

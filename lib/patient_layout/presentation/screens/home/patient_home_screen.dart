@@ -158,7 +158,7 @@ class PatientHomeScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${state.user.firstName} ${state.user.lastName}',
+                              '${state.user?.firstName} ${state.user?.lastName}',
                               style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 22,

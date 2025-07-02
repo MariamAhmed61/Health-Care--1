@@ -9,43 +9,29 @@ class MessageCubit extends Cubit<MessageState> {
 
   MessageCubit(this.messageService) : super(MessageInitial());
 
+  // Load conversation
   Future<void> loadConversation(String user1, String user2) async {
-    emit(MessageLoading());
     try {
-      final messages = await messageService.getConversation(
-        user1: user1,
-        user2: user2,
-      );
-      emit(MessageLoaded(messages));
+      emit(MessageLoading());
+      final conversation = await messageService.fetchConversation(user1, user2);
+      emit(MessageLoaded(conversation));
     } catch (e) {
-      emit(MessageError(e.toString()));
+      emit(MessageError('Failed to load conversation: $e'));
     }
   }
 
-  Future<void> sendMessage({
-    required String senderId,
-    required String receiverId,
-    required String senderType,
-    required String receiverType,
-    required String content,
-  }) async {
+  // Send a message
+  Future<void> sendMessage(Message message) async {
     try {
-      await messageService.sendMessage(
-        senderId: senderId,
-        receiverId: receiverId,
-        senderType: senderType,
-        receiverType: receiverType,
-        content: content,
-      );
-
-      // من غير MessageLoading هنا
-      final updatedMessages = await messageService.getConversation(
-        user1: senderId,
-        user2: receiverId,
-      );
-      emit(MessageLoaded(updatedMessages));
+      await messageService.sendMessage(message);
+      if (state is MessageLoaded) {
+        final updatedMessages =
+            List<Message>.from((state as MessageLoaded).messages)..add(message);
+        emit(MessageLoaded(
+            updatedMessages)); 
+      }
     } catch (e) {
-      emit(MessageError(e.toString()));
+      emit(MessageError('Failed to send message: $e'));
     }
   }
 }

@@ -21,7 +21,7 @@ class PatientSettingScreen extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  S.of(context).settings,
+                  S.of(context).setting,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
