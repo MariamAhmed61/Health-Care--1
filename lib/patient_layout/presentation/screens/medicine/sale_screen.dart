@@ -55,7 +55,10 @@ class _Sale_ScreenState extends State<Sale_Screen> {
         stream: FirebaseFirestore.instance.collection('medicines').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting)
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: AppColors.primaryColor,
+            ));
 
           final docs = snapshot.data?.docs ?? [];
 

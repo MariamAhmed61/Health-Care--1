@@ -1,66 +1,51 @@
 import 'package:dio/dio.dart';
-import 'package:health_care_app/chat/data/message_model.dart';
-
-
-import 'package:dio/dio.dart';
+import 'message_model.dart';
 
 class MessageService {
-  final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'https://healthcare-4scv.vercel.app/api/messages',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  ));
+  final Dio dio;
+  final String baseUrl;
 
-  Future<List<MessageModel>> getConversation({
-  required String user1,
-  required String user2,
-}) async {
-  final response = await _dio.get(
-    '/conversation',
-    queryParameters: {
-      'user1': user1.trim(),
-      'user2': user2.trim(),
-    },
-  );
+  MessageService({this.baseUrl = 'https://healthcare-4scv.vercel.app/api/messages'})
+      : dio = Dio();
 
-  if (response.data['status'] == 'success') {
-    final List<dynamic> data = response.data['data'];
-
-    return data.map((e) {
-      return MessageModel(
-        senderId: user1, // مؤقتًا نستخدم الـ user1
-        receiverId: user2,
-        content: e.toString(), // لأن الـ e عبارة عن String
-        createdAt: DateTime.now(), // مؤقت
+  // إرسال رسالة
+  Future<void> sendMessage(Message message) async {
+    try {
+      final response = await dio.post(
+        '$baseUrl/send',
+        data: {
+          'senderId': message.senderId,
+          'receiverId': message.receiverId,
+          'senderType': message.senderType,
+          'receiverType': message.receiverType,
+          'content': message.content,
+        },
       );
-    }).toList();
-  } else {
-    throw Exception('Failed to load conversation: ${response.data['message']}');
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to send message');
+      }
+    } catch (e) {
+      throw Exception('Failed while trying to send message: $e');
+    }
   }
-}
 
+  // تحميل المحادثة
+  Future<List<Message>> fetchConversation(String user1, String user2) async {
+    try {
+      final response = await dio.get('$baseUrl/conversation', queryParameters: {
+        'user1': user1,
+        'user2': user2,
+      });
 
-  Future<void> sendMessage({
-    required String senderId,
-    required String receiverId,
-    required String senderType,
-    required String receiverType,
-    required String content,
-  }) async {
-    final response = await _dio.post(
-      '/send',
-      data: {
-        'senderId': senderId,
-        'receiverId': receiverId,
-        'senderType': senderType,
-        'receiverType': receiverType,
-        'content': content, 
-      },
-    );
-
-    if (response.data['status'] != 'success') {
-      throw Exception('Failed to send message: ${response.data['message']}');
+      if (response.statusCode == 200) {
+        final data = response.data['data']['messages'] as List;
+        return data.map((message) => Message.fromJson(message)).toList();
+      } else {
+        throw Exception('failed to load conversation');
+      }
+    } catch (e) {
+      throw Exception('failed while loading conversation: $e');
     }
   }
 }

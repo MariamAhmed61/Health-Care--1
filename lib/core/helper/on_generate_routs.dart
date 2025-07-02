@@ -7,6 +7,8 @@ import 'package:health_care_app/chat/presentation/screens/chat_screen.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
 import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
+import 'package:health_care_app/doctor_layout/setting_screen/change_password_screen.dart';
+import 'package:health_care_app/doctor_layout/setting_screen/help_support_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/wallet_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/home/patient_home_screen.dart';
@@ -110,6 +112,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           senderType: '$senderType',
         ),
       );
+      case SupportScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const SupportScreen(),
+      );
 
     case SignupScreen.routeName:
       final userType = settings.arguments as String;
@@ -128,9 +134,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const NotificationScreen(),
       );
-    case SettingScreen.routeName:
+    case PatientSettingScreen.routeName:
       return MaterialPageRoute(
-        builder: (context) => const SettingScreen(),
+        builder: (context) => const PatientSettingScreen(),
+      );
+    case SettingDoctorScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const SettingDoctorScreen(),
       );
     case WalletScreen.routeName:
       return MaterialPageRoute(
@@ -155,6 +165,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case PatientProfile.routeName:
       return MaterialPageRoute(builder: (context) => const PatientProfile());
+    case ChangePasswordScreen.routeName:
+      return MaterialPageRoute(
+          builder: (context) => const ChangePasswordScreen());
 
     default:
       return MaterialPageRoute(

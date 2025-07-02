@@ -35,7 +35,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
      WidgetsBinding.instance.addPostFrameCallback((_) {
     final authState = context.read<AuthCubit>().state;
     if (authState is AuthSuccess) {
-      context.read<AppointmentCubit>().fetchPatientAppointments(authState.user.id!);
+      context.read<AppointmentPatientCubit>().fetchPatientAppointments(authState.user!.id!);
     }
     }
      );
@@ -71,13 +71,13 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                             final authState = context.read<AuthCubit>().state;
                             if (authState is AuthSuccess) {
                               context
-                                  .read<AppointmentCubit>()
-                                  .fetchPatientAppointments(authState.user.id!);
+                                  .read<AppointmentPatientCubit>()
+                                  .fetchPatientAppointments(authState.user!.id!);
                             }
                           },
                         ),
                         Expanded(child:
-                            BlocBuilder<AppointmentCubit, AppointmentState>(
+                            BlocBuilder<AppointmentPatientCubit, AppointmentState>(
                           builder: (context, appointmentState) {
                             if (appointmentState is AppointmentLoading) {
                               return const Center(
@@ -213,7 +213,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${state.user.firstName} ${state.user.lastName}',
+                              '${state.user?.firstName} ${state.user?.lastName}',
                               style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 22,

@@ -318,7 +318,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                     final authState = context.read<AuthCubit>().state;
                                     String patientId = '';
                                     if (authState is AuthSuccess) {
-                                      patientId = authState.user.id ?? '';
+                                      patientId = authState.user?.id ?? '';
                                     }
                                     return AppointmentTime(
                                       doctor: doctor,
@@ -368,7 +368,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
       final authState = context.read<AuthCubit>().state;
       String userId = '';
       if (authState is AuthSuccess) {
-        userId = authState.user.id ?? '';
+        userId = authState.user?.id ?? '';
       }
 
       context.read<DoctorDetailCubit>().rateDoctor(

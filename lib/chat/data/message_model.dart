@@ -1,22 +1,39 @@
-class MessageModel {
+class Message {
   final String senderId;
   final String receiverId;
+  final String senderType;
+  final String receiverType;
   final String content;
-  final DateTime createdAt;
+  final String timestamp;
 
-  MessageModel({
+  Message({
     required this.senderId,
     required this.receiverId,
+    required this.senderType,
+    required this.receiverType,
     required this.content,
-    required this.createdAt,
+    required this.timestamp,
   });
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) {
-    return MessageModel(
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
       senderId: json['senderId'],
       receiverId: json['receiverId'],
+      senderType: json['senderType'],
+      receiverType: json['receiverType'],
       content: json['content'],
-      createdAt: DateTime.parse(json['createdAt']),
+      timestamp: json['timestamp'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'senderId': senderId,
+      'receiverId': receiverId,
+      'senderType': senderType,
+      'receiverType': receiverType,
+      'content': content,
+      'timestamp': timestamp,
+    };
   }
 }

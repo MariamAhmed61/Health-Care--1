@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'appointment_state.dart';
 import 'package:dio/dio.dart';
 
-class AppointmentCubit extends Cubit<AppointmentState> {
-  AppointmentCubit() : super(AppointmentInitial());
+class AppointmentPatientCubit extends Cubit<AppointmentState> {
+  AppointmentPatientCubit() : super(AppointmentInitial());
 
   final Dio _dio = Dio(BaseOptions(
     baseUrl: 'https://healthcare-4scv.vercel.app/api',

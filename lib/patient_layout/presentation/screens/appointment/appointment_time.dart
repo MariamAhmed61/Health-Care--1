@@ -44,7 +44,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppointmentCubit, AppointmentState>(
+    return BlocConsumer<AppointmentPatientCubit, AppointmentState>(
       listener: (context, state) {
         if (state is AppointmentLoaded) {
           _showDialog(context, state.message);
@@ -234,11 +234,11 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                                       context.read<AuthCubit>().state;
                                   String patientId = '';
                                   if (authState is AuthSuccess) {
-                                    patientId = authState.user.id ?? '';
+                                    patientId = authState.user?.id ?? '';
                                   }
 
                                   context
-                                      .read<AppointmentCubit>()
+                                      .read<AppointmentPatientCubit>()
                                       .bookAppointment(
                                         doctorId: widget.doctor.id!,
                                         patientId: patientId,

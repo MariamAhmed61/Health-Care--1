@@ -24,6 +24,7 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+
   id: json['id'],
   specialization: json['specialization'],
   userType: json['userType'],
@@ -35,4 +36,5 @@ class UserModel {
   password: '',          // مش بيرجع من السيرفر
   confirmPassword: '',   // مش بيرجع من السيرفر
 );
+
 }

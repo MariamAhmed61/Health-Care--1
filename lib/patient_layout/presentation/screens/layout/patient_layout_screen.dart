@@ -62,7 +62,7 @@ class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
                   ),
                 ),
                 BottomNavigationBarItem(
-                  label: S.of(context).settings,
+                  label: S.of(context).setting,
                   icon: const Icon(
                     Icons.settings,
                   ),
