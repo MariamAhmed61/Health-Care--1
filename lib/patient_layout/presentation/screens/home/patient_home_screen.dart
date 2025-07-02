@@ -7,17 +7,39 @@ import 'package:health_care_app/chat/presentation/screens/chat_icon_button.dart'
 import 'package:health_care_app/chat/presentation/screens/chat_screen.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/generated/l10n.dart';
+import 'package:health_care_app/patient_layout/presentation/cubits/appointment_cubit/appointment_cubit.dart';
+import 'package:health_care_app/patient_layout/presentation/cubits/appointment_cubit/appointment_state.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/doctor_profile_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/doctor/search_screen.dart';
 
 import '../../cubits/doctor_cubit/doctor_cubit.dart';
 import '../../cubits/doctor_cubit/doctor_state.dart';
 
-class PatientHomeScreen extends StatelessWidget {
+class PatientHomeScreen extends StatefulWidget {
   static const routeName = 'patient-home';
-  const PatientHomeScreen({
+
+  PatientHomeScreen({
     super.key,
   });
+
+  @override
+  State<PatientHomeScreen> createState() => _PatientHomeScreenState();
+}
+
+class _PatientHomeScreenState extends State<PatientHomeScreen> {
+  DateTime selectedDate = DateTime.now();
+
+@override
+ void initState() {
+    super.initState();
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+    final authState = context.read<AuthCubit>().state;
+    if (authState is AuthSuccess) {
+      context.read<AppointmentCubit>().fetchPatientAppointments(authState.user.id!);
+    }
+    }
+     );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,26 +63,60 @@ class PatientHomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         EasyDateTimeLine(
-                          initialDate: DateTime.now(),
+                          initialDate: selectedDate,
                           activeColor: AppColors.primaryColor,
+                          onDateChange: (date) {
+                            selectedDate = date;
+
+                            final authState = context.read<AuthCubit>().state;
+                            if (authState is AuthSuccess) {
+                              context
+                                  .read<AppointmentCubit>()
+                                  .fetchPatientAppointments(authState.user.id!);
+                            }
+                          },
                         ),
-                        Expanded(
-                          child: BlocBuilder<DoctorCubit, DoctorState>(
-                            builder: (context, state) {
-                              if (state is DoctorLoading) {
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.primaryColor,
-                                  ),
-                                );
-                              } else if (state is DoctorError) {
-                                return Center(child: Text(state.message));
-                              } else if (state is DoctorLoaded) {
-                                final doctorsList = state.doctors;
+                        Expanded(child:
+                            BlocBuilder<AppointmentCubit, AppointmentState>(
+                          builder: (context, appointmentState) {
+                            if (appointmentState is AppointmentLoading) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else if (appointmentState
+                                is PatientAppointmentsLoaded) {
+                              final selectedDateStr = selectedDate
+                                  .toIso8601String()
+                                  .split('T')
+                                  .first;
+
+                              final todayAppointments =
+                                  appointmentState.appointments.where(
+                                (a) => a['date'] == selectedDateStr,
+                              );
+
+                              final bookedDoctorIds = todayAppointments
+                                  .map((a) => a['doctorId'])
+                                  .toSet();
+
+                              final doctorState =
+                                  context.read<DoctorCubit>().state;
+                              if (doctorState is DoctorLoaded) {
+                                final allDoctors = doctorState.doctors;
+
+                                final bookedDoctors = allDoctors
+                                    .where((doc) =>
+                                        bookedDoctorIds.contains(doc.id))
+                                    .toList();
+
+                                if (bookedDoctors.isEmpty) {
+                                  return const Center(
+                                      child: Text("لا يوجد حجوزات لهذا اليوم"));
+                                }
+
                                 return ListView.builder(
-                                  itemCount: doctorsList.length,
+                                  itemCount: bookedDoctors.length,
                                   itemBuilder: (context, index) {
-                                    final doctor = doctorsList[index];
+                                    final doctor = bookedDoctors[index];
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16.0, vertical: 8),
@@ -84,37 +140,36 @@ class PatientHomeScreen extends StatelessWidget {
                                           child: ListTile(
                                             leading: const CircleAvatar(
                                               radius: 30,
-                                              child: Icon(
-                                                Icons.person,
-                                                color: AppColors.primaryColor,
-                                                size: 35,
-                                              ),
+                                              child: Icon(Icons.person,
+                                                  color: AppColors.primaryColor,
+                                                  size: 35),
                                             ),
                                             title: Text(
                                               'Dr. ${doctor.firstName} ${doctor.lastName}',
                                               style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                             subtitle: Text(
-                                              doctor.specialization ?? '',
-                                              style:
-                                                  const TextStyle(fontSize: 10),
-                                            ),
+                                                doctor.specialization ?? ''),
                                             trailing: ChatIconButton(
-                                              doctorId: doctor.id!,
-                                            ),
+                                                doctorId: doctor.id!),
                                           ),
                                         ),
                                       ),
                                     );
                                   },
                                 );
+                              } else {
+                                return const Center(
+                                    child: Text("جاري تحميل الأطباء..."));
                               }
-                              return const SizedBox.shrink();
-                            },
-                          ),
-                        ),
+                            } else if (appointmentState is AppointmentError) {
+                              return Center(
+                                  child: Text(appointmentState.message));
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        )),
                       ],
                     ),
                   ),

@@ -101,7 +101,7 @@ class SearchScreen extends StatelessWidget{
                                   doctor.specialization ?? '',
                                   style: const TextStyle(fontSize: 10),
                                 ),
-                                trailing: const Icon(Icons.favorite_border),
+                                trailing: Text('\$ ${doctor.price ?? 0.0}'),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(

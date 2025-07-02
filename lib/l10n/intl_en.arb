@@ -48,6 +48,8 @@
     "logout_successful": "Logout successful",
     "save": "Save",
     "select_language": "Select Language",
-    "yes": "Yes"
-
+    "yes": "Yes",
+    "rate":"Rate Doctor",
+    "send":"Send",
+    "comment":"Comment"
 }

@@ -19,7 +19,7 @@ class PatientLayoutScreen extends StatefulWidget {
 class _PatientLayoutScreenState extends State<PatientLayoutScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
-    const PatientHomeScreen(),
+     PatientHomeScreen(),
     const Sale_Screen(),
     const PatientSettingScreen(),
   ];

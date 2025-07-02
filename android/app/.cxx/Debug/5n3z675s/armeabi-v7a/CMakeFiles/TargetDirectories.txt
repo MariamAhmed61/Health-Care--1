@@ -1,0 +1,2 @@
+D:/flutter projects/review/Health-Care--1/android/app/.cxx/Debug/5n3z675s/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/flutter projects/review/Health-Care--1/android/app/.cxx/Debug/5n3z675s/armeabi-v7a/CMakeFiles/rebuild_cache.dir

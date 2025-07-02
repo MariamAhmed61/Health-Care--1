@@ -139,7 +139,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case PatientHomeScreen.routeName:
       return MaterialPageRoute(
-        builder: (context) => const PatientHomeScreen(),
+        builder: (context) =>  PatientHomeScreen(),
       );
     case PatientNotificationScreen.routeName:
       return MaterialPageRoute(

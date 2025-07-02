@@ -45,4 +45,28 @@ class DoctorDetailCubit extends Cubit<DoctorDetailState> {
       emit(DoctorDetailError('Error: $e'));
     }
   }
+
+  void rateDoctor({
+    required String doctorId,
+    required int rating,
+    required String userId,
+  }) async {
+    try {
+      emit(DoctorDetailLoading());
+      final success = await PatientService.rateDoctor(
+        doctorId: doctorId,
+        rating: rating,
+        userId: userId,
+      );
+
+      if (success) {
+        fetchDoctor(doctorId);
+      } else {
+        emit(DoctorDetailError("فشل في إرسال التقييم"));
+      }
+    } catch (e) {
+      emit(DoctorDetailError("خطأ أثناء إرسال التقييم: $e"));
+    }
+  }
+
 }
