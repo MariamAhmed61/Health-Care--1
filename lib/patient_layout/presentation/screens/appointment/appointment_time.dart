@@ -129,7 +129,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                         child: availableTimes.isEmpty
                             ? const Center(
                                 child: Text(
-                                  "لا يوجد مواعيد متاحة في هذا اليوم",
+                                  "No available times",
                                   style: TextStyle(color: Colors.grey),
                                 ),
                               )

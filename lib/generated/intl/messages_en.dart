@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chat with us on WhatsApp"),
         "chooseImageFromGallery":
             MessageLookupByLibrary.simpleMessage("Choose Image From Gallery"),
+        "comment": MessageLookupByLibrary.simpleMessage("Comment"),
         "confirmDeleteSlot": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this slot?"),
         "confirm_password":
@@ -138,11 +139,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter both date and time."),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "rate": MessageLookupByLibrary.simpleMessage("Rate Doctor"),
         "receiveNotifications":
             MessageLookupByLibrary.simpleMessage("Receive Notification"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
-        "search": MessageLookupByLibrary.simpleMessage(
-            "Search By Date (e.g. 13 Aug)"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchByDate": MessageLookupByLibrary.simpleMessage(
             "Search By Date (e.g. 13 Aug)"),
         "security": MessageLookupByLibrary.simpleMessage("Security"),
@@ -152,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Time to Delete"),
         "select_language":
             MessageLookupByLibrary.simpleMessage("Select Language"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "showImage": MessageLookupByLibrary.simpleMessage("Show Image"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign Up"),

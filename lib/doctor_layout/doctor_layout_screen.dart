@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
-import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
+import 'package:health_care_app/doctor_layout/notification/notification_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
 import 'package:health_care_app/doctor_layout/avaliable_slots_screen/available_solts_screen.dart'; // ✅ استيراد السكرين الجديدة
 import 'package:health_care_app/generated/l10n.dart';

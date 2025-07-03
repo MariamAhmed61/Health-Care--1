@@ -29,16 +29,17 @@ class PatientHomeScreen extends StatefulWidget {
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
   DateTime selectedDate = DateTime.now();
 
-@override
- void initState() {
+  @override
+  void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((_) {
-    final authState = context.read<AuthCubit>().state;
-    if (authState is AuthSuccess) {
-      context.read<AppointmentPatientCubit>().fetchPatientAppointments(authState.user!.id!);
-    }
-    }
-     );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final authState = context.read<AuthCubit>().state;
+      if (authState is AuthSuccess) {
+        context
+            .read<AppointmentPatientCubit>()
+            .fetchPatientAppointments(authState.user!.id!);
+      }
+    });
   }
 
   @override
@@ -72,12 +73,13 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                             if (authState is AuthSuccess) {
                               context
                                   .read<AppointmentPatientCubit>()
-                                  .fetchPatientAppointments(authState.user!.id!);
+                                  .fetchPatientAppointments(
+                                      authState.user!.id!);
                             }
                           },
                         ),
-                        Expanded(child:
-                            BlocBuilder<AppointmentPatientCubit, AppointmentState>(
+                        Expanded(child: BlocBuilder<AppointmentPatientCubit,
+                            AppointmentState>(
                           builder: (context, appointmentState) {
                             if (appointmentState is AppointmentLoading) {
                               return const Center(
@@ -110,7 +112,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
 
                                 if (bookedDoctors.isEmpty) {
                                   return const Center(
-                                      child: Text("لا يوجد حجوزات لهذا اليوم"));
+                                      child: Text("No appointments today"));
                                 }
 
                                 return ListView.builder(
@@ -161,7 +163,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                 );
                               } else {
                                 return const Center(
-                                    child: Text("جاري تحميل الأطباء..."));
+                                    child: Text("Loading doctors..."));
                               }
                             } else if (appointmentState is AppointmentError) {
                               return Center(

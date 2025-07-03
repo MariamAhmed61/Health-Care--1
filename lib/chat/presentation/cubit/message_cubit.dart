@@ -9,10 +9,11 @@ class MessageCubit extends Cubit<MessageState> {
 
   MessageCubit(this.messageService) : super(MessageInitial());
 
-  // Load conversation
-  Future<void> loadConversation(String user1, String user2) async {
+  Future<void> loadConversation(String user1, String user2,
+      {bool showLoading = true}) async {
     try {
-      emit(MessageLoading());
+      if (showLoading) emit(MessageLoading());
+
       final conversation = await messageService.fetchConversation(user1, user2);
       emit(MessageLoaded(conversation));
     } catch (e) {
@@ -24,11 +25,11 @@ class MessageCubit extends Cubit<MessageState> {
   Future<void> sendMessage(Message message) async {
     try {
       await messageService.sendMessage(message);
+
       if (state is MessageLoaded) {
         final updatedMessages =
             List<Message>.from((state as MessageLoaded).messages)..add(message);
-        emit(MessageLoaded(
-            updatedMessages)); 
+        emit(MessageLoaded(updatedMessages));
       }
     } catch (e) {
       emit(MessageError('Failed to send message: $e'));

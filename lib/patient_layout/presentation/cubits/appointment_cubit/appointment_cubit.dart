@@ -28,7 +28,7 @@ class AppointmentPatientCubit extends Cubit<AppointmentState> {
         emit(AppointmentTimesLoaded([]));
       }
     } catch (e) {
-      emit(AppointmentError("فشل في تحميل المواعيد"));
+      emit(AppointmentError("Failed to fetch times"));
     }
   }
 
@@ -44,7 +44,7 @@ class AppointmentPatientCubit extends Cubit<AppointmentState> {
 
       emit(PatientAppointmentsLoaded(appointments));
     } catch (e) {
-      emit(AppointmentError('فشل في تحميل المواعيد: $e'));
+      emit(AppointmentError('Failed to fetch appointments'));
     }
   }
 
@@ -68,12 +68,13 @@ class AppointmentPatientCubit extends Cubit<AppointmentState> {
           });
 
       if (response.statusCode == 200) {
-        emit(AppointmentLoaded(response.data["message"] ?? "تم الحجز بنجاح"));
+        emit(AppointmentLoaded(response.data["message"] ??
+            "the apppointment booked successfully"));
       } else {
-        emit(AppointmentError("فشل الحجز"));
+        emit(AppointmentError("Failed to book appointment"));
       }
     } catch (e) {
-      emit(AppointmentError("حدث خطأ أثناء الحجز"));
+      emit(AppointmentError("this appointment was  booked"));
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,17 +31,37 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
+  Timer? _pollingTimer; // حطيه فوق في الكلاس علشان نوقفه بعدين لو حبينا
+
   @override
   void initState() {
     super.initState();
-    // استدعي الدالة هنا بعد بناء الـ context
+
     Future.microtask(() {
       context.read<MessageCubit>().loadConversation(
             widget.senderId,
             widget.receiverId,
+            showLoading: true,
           );
+
+      _pollingTimer = Timer.periodic(const Duration(seconds: 3), (_) {
+        context.read<MessageCubit>().loadConversation(
+              widget.senderId,
+              widget.receiverId,
+              showLoading: false,
+            );
+      });
     });
   }
+
+  @override
+  void dispose() {
+    _pollingTimer?.cancel();
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
 
   void _sendMessage() async {
     final text = _controller.text.trim();
@@ -73,38 +94,46 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildMessageBubble(Message message) {
     final isMe = message.senderId == widget.senderId;
-    final messageDate = DateTime.parse(message.timestamp);
-    final formattedTime =
-        "${messageDate.hour}:${messageDate.minute.toString().padLeft(2, '0')}"; // Display only the time (hour:minute)
+    final messageDate = DateTime.tryParse(message.timestamp);
+    final formattedTime = messageDate != null
+        ? "${messageDate.hour}:${messageDate.minute.toString().padLeft(2, '0')}"
+        : '';
 
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-        padding: const EdgeInsets.all(10),
-        constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width *
-                0.75), // Ensure the bubble doesn't take full width
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isMe ? Colors.blue : Colors.grey[300],
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(12),
+            topRight: const Radius.circular(12),
+            bottomLeft:
+                isMe ? const Radius.circular(12) : const Radius.circular(0),
+            bottomRight:
+                isMe ? const Radius.circular(0) : const Radius.circular(12),
+          ),
+        ),
+        constraints: const BoxConstraints(
+          maxWidth: 280, // تمنع الرسالة من أنها تاخد الشاشة كلها
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
               message.content,
               style: TextStyle(
+                fontSize: 16,
                 color: isMe ? Colors.white : Colors.black,
               ),
             ),
-            const SizedBox(
-                height: 4), // Add space between the message and the time
+            const SizedBox(height: 4),
             Text(
-              formattedTime, // Display only the time (not date)
+              formattedTime,
               style: TextStyle(
+                fontSize: 10,
                 color: isMe ? Colors.white70 : Colors.black54,
-                fontSize: 12,
               ),
             ),
           ],
@@ -138,7 +167,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   final messages = state.messages;
                   return ListView.builder(
                     controller: _scrollController,
-                    reverse: true, // Display messages from bottom to top
                     itemCount: messages.length,
                     itemBuilder: (context, index) {
                       return _buildMessageBubble(messages[index]);

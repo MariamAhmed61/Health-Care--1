@@ -6,7 +6,7 @@ import 'package:health_care_app/auth/pressentation/screens/auht_screen/login_scr
 import 'package:health_care_app/chat/presentation/screens/chat_screen.dart';
 import 'package:health_care_app/doctor_layout/doctor_layout_screen.dart';
 import 'package:health_care_app/doctor_layout/home_screen/home_screen.dart';
-import 'package:health_care_app/doctor_layout/notification_screen/notification_screen.dart';
+import 'package:health_care_app/doctor_layout/notification/notification_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/change_password_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/help_support_screen.dart';
 import 'package:health_care_app/doctor_layout/setting_screen/setting_screen.dart';
@@ -15,7 +15,6 @@ import 'package:health_care_app/patient_layout/presentation/screens/home/patient
 import 'package:health_care_app/patient_layout/presentation/screens/layout/patient_layout_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/medicine/details_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/medicine/sale_screen.dart';
-import 'package:health_care_app/patient_layout/presentation/screens/notification/patient_notification_screen.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/payment/payment_details.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/profile/patient_profile.dart';
 import 'package:health_care_app/patient_layout/presentation/screens/settings/patient_setting_screen.dart';
@@ -130,10 +129,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const DoctorLayoutScreen(),
       );
-    case NotificationScreen.routeName:
-      return MaterialPageRoute(
-        builder: (context) => const NotificationScreen(),
-      );
+    
     case PatientSettingScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const PatientSettingScreen(),
@@ -151,9 +147,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) =>  PatientHomeScreen(),
       );
-    case PatientNotificationScreen.routeName:
+    case NotificationScreen.routeName:
       return MaterialPageRoute(
-        builder: (context) => const PatientNotificationScreen(),
+        builder: (context) => const NotificationScreen(),
       );
     case PatientSettingScreen.routeName:
       return MaterialPageRoute(

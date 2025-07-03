@@ -11,6 +11,7 @@ import 'package:health_care_app/chat/data/message_service.dart';
 import 'package:health_care_app/chat/presentation/cubit/message_cubit.dart';
 
 import 'package:health_care_app/core/helper/on_generate_routs.dart';
+import 'package:health_care_app/doctor_layout/notification/cubit/notification_cubit.dart';
 import 'package:health_care_app/firebase_options.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/appointment_cubit/appointment_cubit.dart';
 import 'package:health_care_app/patient_layout/presentation/cubits/doctor_cubit/doctor_cubit.dart';
@@ -38,13 +39,14 @@ class HealthCare extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DoctorCubit()..fetchDoctors()),
-        BlocProvider(create: (_) => DoctorLayoutCubit()),
+        BlocProvider < DoctorLayoutCubit>(create: (_) => DoctorLayoutCubit()),
         BlocProvider(create: (context) => AuthCubit(AuthService())),
         BlocProvider(create: (context) => LanguageCubit()),
         BlocProvider(create: (context) => AppointmentPatientCubit()),
         BlocProvider(create: (context) => MessageCubit(MessageService())),BlocProvider<AppointmentCubit>(
           create: (_) => AppointmentCubit(),
         ),
+        BlocProvider <NotificationCubit>(create: (_) => NotificationCubit()),
         BlocProvider<AvailableSlotsCubit>(create: (_) => AvailableSlotsCubit()),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

@@ -1,3 +1,1 @@
-class AppAssets{
-
-}
+class AppAssets {}

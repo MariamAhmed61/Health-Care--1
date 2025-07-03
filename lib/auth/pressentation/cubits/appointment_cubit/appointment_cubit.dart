@@ -12,17 +12,18 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   final Dio dio = Dio();
   List<AppointmentWithPatientModel> appointments = [];
 
-  Future<void> fetchAppointmentsWithPatient() async {
-    emit(AppointmentLoading());
+  Future<void> fetchAppointmentsWithPatient({bool showLoading = true}) async {
+    if (showLoading) emit(AppointmentLoading());
 
     try {
       final prefs = await SharedPreferences.getInstance();
       final email = prefs.getString('logged_in_email');
 
-      final doctorRes = await dio.get('https://healthcare-4scv.vercel.app/api/doctors/doctors');
+      final doctorRes = await dio
+          .get('https://healthcare-4scv.vercel.app/api/doctors/doctors');
       final allDoctors = doctorRes.data['data'] as List;
       final doctor = allDoctors.firstWhere(
-            (d) => d['email'] == email,
+        (d) => d['email'] == email,
         orElse: () => null,
       );
 
@@ -41,25 +42,28 @@ class AppointmentCubit extends Cubit<AppointmentState> {
       final patientList = patientsRes.data['data'] as List;
 
       // Map appointments with patient data
-      appointments = appointmentList.map((apptJson) {
-        final patientId = apptJson['patientId'];
-        final patientData = patientList.firstWhere(
+      appointments = appointmentList
+          .map((apptJson) {
+            final patientId = apptJson['patientId'];
+            final patientData = patientList.firstWhere(
               (p) => p['_id'] == patientId,
-          orElse: () => null,
-        );
+              orElse: () => null,
+            );
 
-        if (patientData == null) return null;
+            if (patientData == null) return null;
 
-        final patient = PatientProfileModel.fromJson(patientData);
+            final patient = PatientProfileModel.fromJson(patientData);
 
-        return AppointmentWithPatientModel(
-          id: apptJson['_id'],
-          date: apptJson['date'],
-          time: apptJson['time'],
-          status: apptJson['status'],
-          patient: patient,
-        );
-      }).whereType<AppointmentWithPatientModel>().toList();
+            return AppointmentWithPatientModel(
+              id: apptJson['_id'],
+              date: apptJson['date'],
+              time: apptJson['time'],
+              status: apptJson['status'],
+              patient: patient,
+            );
+          })
+          .whereType<AppointmentWithPatientModel>()
+          .toList();
 
       appointments.sort((a, b) {
         final aDateTime = DateTime.parse('${a.date} ${_normalizeTime(a.time)}');

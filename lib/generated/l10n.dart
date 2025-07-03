@@ -510,16 +510,6 @@ class S {
     );
   }
 
-  /// `Yes`
-  String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Welcome Doctor `
   String get welcome {
     return Intl.message(
@@ -540,10 +530,10 @@ class S {
     );
   }
 
-  /// `Search By Date (e.g. 13 Aug)`
+  /// `Search`
   String get search {
     return Intl.message(
-      'Search By Date (e.g. 13 Aug)',
+      'Search',
       name: 'search',
       desc: '',
       args: [],
@@ -1085,6 +1075,46 @@ class S {
     return Intl.message(
       'enterDateAndTime',
       name: 'enterDateAndTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate Doctor`
+  String get rate {
+    return Intl.message(
+      'Rate Doctor',
+      name: 'rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment`
+  String get comment {
+    return Intl.message(
+      'Comment',
+      name: 'comment',
       desc: '',
       args: [],
     );

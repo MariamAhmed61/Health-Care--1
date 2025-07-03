@@ -38,13 +38,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم الحجز بنجاح"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cash": MessageLookupByLibrary.simpleMessage("نقدًا"),
-        "change": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
+        "change": MessageLookupByLibrary.simpleMessage("تغيير"),
         "changePassword":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "change_password":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "chatWithUs":
             MessageLookupByLibrary.simpleMessage("تحدث معنا عبر واتساب"),
         "chooseImageFromGallery":
             MessageLookupByLibrary.simpleMessage("اختر صورة من المعرض"),
+        "comment": MessageLookupByLibrary.simpleMessage("تعليق"),
         "confirmDeleteSlot": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد أنك تريد حذف هذا الموعد؟"),
         "confirm_password":
@@ -82,12 +85,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كيف يمكنني حجز موعد جديد؟"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "forgot_password":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "general": MessageLookupByLibrary.simpleMessage("عام"),
         "haveANiceDay": MessageLookupByLibrary.simpleMessage("يوم سعيد"),
         "helpSupport": MessageLookupByLibrary.simpleMessage("المساعدة والدعم"),
         "help_support": MessageLookupByLibrary.simpleMessage("المساعدة والدعم"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
-        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغات"),
         "language_changed_to":
             MessageLookupByLibrary.simpleMessage("تم تغيير اللغة بنجاح إلى "),
         "lets_find_doctor":
@@ -126,11 +131,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "من فضلك أدخل التاريخ والوقت معًا."),
         "price": MessageLookupByLibrary.simpleMessage("سعر الكشف"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "rate": MessageLookupByLibrary.simpleMessage("تقييم الدكتور"),
         "receiveNotifications":
             MessageLookupByLibrary.simpleMessage("استلام الإشعارات"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
-        "search": MessageLookupByLibrary.simpleMessage(
-            "البحث بالتاريخ (مثلا 13 أغسطس)"),
+        "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchByDate": MessageLookupByLibrary.simpleMessage("البحث بالتاريخ"),
         "security": MessageLookupByLibrary.simpleMessage("الأمان"),
         "selectDate": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
@@ -138,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectTimeToDelete":
             MessageLookupByLibrary.simpleMessage("اختر الوقت الذي تريد حذفه"),
         "select_language": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
+        "send": MessageLookupByLibrary.simpleMessage("ارسال"),
         "setting": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "showImage": MessageLookupByLibrary.simpleMessage("عرض الصورة"),
         "signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),

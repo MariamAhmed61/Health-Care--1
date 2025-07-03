@@ -1,7 +1,8 @@
+import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:health_care_app/auth/pressentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:health_care_app/core/constants/app_colors/app_colors.dart';
 import 'package:health_care_app/generated/l10n.dart';
@@ -23,8 +24,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
   bool isMapLoading = true;
   double selectedRating = 0;
   bool isRatingSubmitted = false;
-
-
 
   @override
   void initState() {
@@ -250,7 +249,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             )
                           else
                             const Center(child: Text("Location not available")),
-
                           const SizedBox(height: 20),
                           const Text(
                             'Rate and Review this Doctor:',
@@ -269,7 +267,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               isHalfAllowed: true,
                               filledColor: Colors.amber,
                               emptyColor: Colors.grey,
-                              size: 30, onRatingChanged:(rating) {
+                              size: 30,
+                              onRatingChanged: (rating) {
                                 setState(() {
                                   selectedRating = rating;
                                   isRatingSubmitted = false;
@@ -291,7 +290,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               ),
                             ),
                             child: Text(
-                              isRatingSubmitted ? 'Thank You!' : 'Submit Review',
+                              isRatingSubmitted
+                                  ? 'Thank You!'
+                                  : 'Submit Review',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -315,7 +316,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) {
-                                    final authState = context.read<AuthCubit>().state;
+                                    final authState =
+                                        context.read<AuthCubit>().state;
                                     String patientId = '';
                                     if (authState is AuthSuccess) {
                                       patientId = authState.user?.id ?? '';
@@ -372,10 +374,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
       }
 
       context.read<DoctorDetailCubit>().rateDoctor(
-        doctorId: doctorId,
-        rating: selectedRating.toInt(),
-        userId: userId,
-      );
+            doctorId: doctorId,
+            rating: selectedRating.toInt(),
+            userId: userId,
+          );
 
       setState(() {
         isRatingSubmitted = true;

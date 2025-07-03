@@ -106,7 +106,6 @@ class ShowDialog {
   }
 
   static void showLogoutDialog(BuildContext context) {
-    final loc = AppLocalizations.of(context)!;
 
     showDialog(
       context: context,
@@ -118,7 +117,7 @@ class ShowDialog {
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
-                loc.cancel,
+                S.of(context).cancel,
                 style: const TextStyle(color: AppColors.primaryColor),
               ),
             ),
@@ -132,7 +131,7 @@ class ShowDialog {
                 );
               },
               child: Text(
-                loc.yes,
+                S.of(context).yes,
                 style: const TextStyle(color: Colors.black),
               ),
             ),

@@ -185,12 +185,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 8),
                         child: Container(
+                          height: 100,
                           decoration: BoxDecoration(
                             color: AppColors.primaryColor,
                             borderRadius: BorderRadius.circular(28),
                           ),
                           child: ListTile(
+                            contentPadding: const EdgeInsets.all(16),
                             leading: CircleAvatar(
+                              radius: 28,
                               backgroundColor: Colors.white,
                               child: Text(
                                 appt.patient.firstName.isNotEmpty
@@ -204,7 +207,10 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                             ),
                             title: Text(
                               '${appt.patient.firstName} ${appt.patient.lastName}',
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                             subtitle: Text(
                               '${appt.date} - ${appt.time}',
