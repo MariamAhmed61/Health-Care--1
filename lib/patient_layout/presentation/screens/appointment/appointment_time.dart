@@ -18,6 +18,8 @@ class AppointmentTime extends StatefulWidget {
 }
 
 class _AppointmentTimeState extends State<AppointmentTime> {
+  Set<DateTime> availableDates = {}; // ✅ لتخزين الأيام اللي فيها مواعيد متاحة
+
   DateTime selectedDate = DateTime.now();
   String selectedTime = '';
   List<String> availableTimes = [];
@@ -27,6 +29,13 @@ class _AppointmentTimeState extends State<AppointmentTime> {
   void initState() {
     super.initState();
     _updateAvailableTimes();
+
+    // ✅ تجهيز الأيام اللي فيها مواعيد متاحة
+    final slots = widget.doctor.availableSlots ?? [];
+    availableDates = slots
+        .map((s) => DateTime.parse(s.date != null ? s.date! : ''))
+        .map((d) => DateTime(d.year, d.month, d.day))
+        .toSet();
   }
 
   void _updateAvailableTimes() {
@@ -117,6 +126,71 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                           });
                           _updateAvailableTimes();
                         },
+
+                        // ✅ تخصيص شكل اليوم حسب حالته
+                        itemBuilder: (context, dayNum, weekDay, month, fullDate,
+                            isSelected) {
+                          final onlyDate = DateTime(
+                              fullDate.year, fullDate.month, fullDate.day);
+                          final isAvailable = availableDates.contains(onlyDate);
+
+                          Color bgColor;
+
+                          if (isSelected) {
+                            bgColor = AppColors.primaryColor; // ✅ أزرق لو متحدد
+                          } else if (isAvailable) {
+                            bgColor = const Color.fromARGB(
+                                255, 238, 177, 169); // ✅ أحمر لو متاح
+                          } else {
+                            bgColor = const Color(0xffD9D9D9); // ✅ رمادي
+                          }
+
+                          return Container(
+                            width: 70,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 1, vertical: 5),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: bgColor,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  month,
+                                  style: TextStyle(
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  dayNum,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  weekDay,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -175,56 +249,54 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                                 },
                               ),
                       ),
-                       Padding(
-                         padding: const EdgeInsets.all(8.0),
-                         child: Container(
-                           decoration: BoxDecoration(
-                             color: const Color(0xffD9D9D9),
-                             borderRadius: BorderRadius.circular(8),
-                           ),
-                           child: Row(
-                             children: [
-                               Padding(
-                                 padding: const EdgeInsets.all(32.0),
-                                 child: Center(
-                                   child: Text(
-                                     S.of(context).payment_method,
-                                     style: const TextStyle(
-                                         color: AppColors.primaryColor,
-                                         fontWeight: FontWeight.bold),
-                                   ),
-                                 ),
-                               ),
-                               TextButton(
-                                 onPressed: () {
-                                  paymentMethod ='cash';
-                                  setState(() {
-                                    
-                                  });
-                                 },
-                                 child: Text(
-                                   S.of(context).cash,
-                                   style: const TextStyle(
-                                       color: Colors.green,
-                                       fontWeight: FontWeight.bold),
-                                 ),
-                               ),
-                               TextButton(
-                                 onPressed: () {
-                                   Navigator.pushNamed(
-                                       context, PaymentDetailsScreen.routeName);
-                                 },
-                                 child: Text(
-                                   S.of(context).visa,
-                                   style: const TextStyle(
-                                       color: Color.fromARGB(255, 175, 76, 142),
-                                       fontWeight: FontWeight.bold),
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
-                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xffD9D9D9),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(32.0),
+                                child: Center(
+                                  child: Text(
+                                    S.of(context).payment_method,
+                                    style: const TextStyle(
+                                        color: AppColors.primaryColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  paymentMethod = 'cash';
+                                  setState(() {});
+                                },
+                                child: Text(
+                                  S.of(context).cash,
+                                  style: const TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, PaymentDetailsScreen.routeName);
+                                },
+                                child: Text(
+                                  S.of(context).visa,
+                                  style: const TextStyle(
+                                      color: Color.fromARGB(255, 175, 76, 142),
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Center(
                         child: ElevatedButton(
                           onPressed: selectedTime.isEmpty
@@ -247,7 +319,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
                                             .split('T')
                                             .first,
                                         time: selectedTime,
-                                          paymentMethod: paymentMethod,
+                                        paymentMethod: paymentMethod,
                                       );
                                 },
                           style: ElevatedButton.styleFrom(

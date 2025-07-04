@@ -177,8 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome Doctor "),
         "welcomeDoctor":
             MessageLookupByLibrary.simpleMessage("Welcome Doctor "),
-        "welcome_message": MessageLookupByLibrary.simpleMessage(
-            "Welcome to the Health Care App"),
+        "welcome_message":
+            MessageLookupByLibrary.simpleMessage("Welcome to the medical App"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

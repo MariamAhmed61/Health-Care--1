@@ -27,6 +27,7 @@ class PatientHomeScreen extends StatefulWidget {
 }
 
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
+  var bookedDates = <DateTime>{};
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -77,6 +78,71 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                       authState.user!.id!);
                             }
                           },
+                          itemBuilder: (context, dayNum, weekDay, month,
+                              fullDate, isSelected) {
+                            final onlyDate = DateTime(
+                                fullDate.year, fullDate.month, fullDate.day);
+                            final isBooked = bookedDates.contains(onlyDate);
+
+                            Color bgColor;
+
+                            if (isSelected) {
+                              bgColor = AppColors
+                                  .primaryColor; // اللون الأزرق لو اختار اليوم
+                            } else if (isBooked) {
+                              bgColor = Color.fromARGB(255, 238, 177,
+                                  169); // اللون الأحمر لو اليوم محجوز
+                            } else {
+                              bgColor = Color.fromARGB(
+                                  255, 216, 214, 214); // لون افتراضي
+                            }
+
+                            return Container(
+                              width: 70,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 1, vertical: 5),
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: bgColor,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    month,
+                                    style: TextStyle(
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    dayNum,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    weekDay,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                         Expanded(child: BlocBuilder<AppointmentPatientCubit,
                             AppointmentState>(
@@ -86,6 +152,24 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                   child: CircularProgressIndicator());
                             } else if (appointmentState
                                 is PatientAppointmentsLoaded) {
+                              final newBookedDates = appointmentState
+                                  .appointments
+                                  .map((a) => DateTime.parse(a['date']))
+                                  .map((d) => DateTime(d.year, d.month, d.day))
+                                  .toSet();
+
+                              // ✅ نعمل تحديث لـ bookedDates فقط لو حصل تغيير حقيقي
+                              if (newBookedDates
+                                  .difference(bookedDates)
+                                  .isNotEmpty) {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  setState(() {
+                                    bookedDates = newBookedDates;
+                                  });
+                                });
+                              }
+
                               final selectedDateStr = selectedDate
                                   .toIso8601String()
                                   .split('T')

@@ -160,10 +160,10 @@ class S {
     );
   }
 
-  /// `Welcome to the Health Care App`
+  /// `Welcome to the medical App`
   String get welcome_message {
     return Intl.message(
-      'Welcome to the Health Care App',
+      'Welcome to the medical App',
       name: 'welcome_message',
       desc: '',
       args: [],
